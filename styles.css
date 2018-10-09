@@ -1,0 +1,81 @@
+header {
+    font-family: 'Charmonman', cursive;
+    font-size: 3em;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    border-top: 1pt solid darkgray;
+    border-bottom: 1pt solid darkgray;
+    align-items: stretch;
+}
+
+.column25 {
+    flex-basis: 25%;
+}
+
+.column50 {
+    flex-basis: 50%;
+}
+
+.column75 {
+    flex-basis: 75%;
+}
+
+.breaking {
+    align-self: flex-start;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: space-evenly;
+}
+
+article {
+    font-family: 'Crimson Text', serif;
+    border: 1pt solid grey;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+article > h1 {
+    font-style: italic;
+    font-weight: 100;
+    text-align: center;
+    text-transform: capitalize;
+
+}
+
+article > img {
+    display: block;
+    margin: 0 auto;
+}
+
+nav > ul > li {
+    flex: 1 100%;
+    padding: 1em;
+}
+
+.li1 {
+    background-color: #69A4CC;
+}
+
+.li2 {
+    background-color: #216899;
+}
+
+.li3 {
+    background-color: #9DFFF2;
+}
+
+.li4 {
+    background-color: #FFE2DC;
+}
+
+.li5 {
+    background-color: #CC6A69;
+}
