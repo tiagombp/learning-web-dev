@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+}
+
+.main-brand {
+    font-size: 60px;
+    text-align: center;
+    font-weight: normal;
+    font-family: 'Great Vibes', cursive;
+    margin: 60px 0; /* margin 60px 0 60px 0 _OR_ margin-top: 60px; margin-bottom: 60px; */
+
+}
+
+.story-image {
+    display: block;
+    margin: 0 auto;
+    /* Brian usou width: 100%; */
+}
+
+.story-title {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 30px;
+    margin: 15px 0; /* margin or padding? tanto faz? */
+    text-align: center;
+}
+
+.story-text {
+    line-height: 1.5;
+    font-size: 18px;
+}
+
+.row {
+    display: flex;
+    align-items: stretch;
+}
+
+.story {
+    border: 1px solid #333; /* a softer black */
+    padding: 5px;
+}
+
+/* para fazer com que a fileira de cima fique com a proporção 25 - 50 - 25: */
+
+.quarter {
+    width: 25%;
+    /* flex-grow: 1; > não funcionou comigo tb. no workshop ele ficou sem saber. no meu, usei flex-basis .*/
+}
+
+.half {
+    width: 50%;
+    /* flex-grow: 2; */
+}
+
+.three-quarter {
+    width: 75%;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-item {
+    width: 100%;
+    flex: 1;   
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    font-size: 30px;
+    color: #555;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #555;
+}
+
+.nav-item a:hover {
+    text-decoration: underline;
+}
+
+.nav-item:nth-child(1) {background-color: #ffeaa7;}
+.nav-item:nth-child(2) {background-color: #81ecec;}
+.nav-item:nth-child(3) {background-color: #55efc4;}
+.nav-item:nth-child(4) {background-color: #74b9ff;}
+.nav-item:nth-child(5) {background-color: #a29bfe;}
