@@ -6,5 +6,22 @@
 <body>
   <h1>JavaScript Experiments!</h1>
   <script src="./experiments.js"></script>
+
+  <style>
+    .red-square {
+      width: 100px;
+      height: 100px;
+      background-color: crimson;
+    }
+  </style>
+  
+  <div class="red-square"></div>
+  
+  <script>
+    const redSquare = document.querySelector('.red-square');
+    redSquare.style.backgroundColor = 'limegreen';
+    console.log(redSquare);
+  </script>
+
 </body>
 </html>

@@ -208,19 +208,19 @@ https://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/
 
 
 
-## CSS Layout
+### CSS Layout
 
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model
 
 https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
 
-### Floats
+#### Floats
 
 `float: left;` means more or less: *go as far to the left as you possible can. And then once you can't go any further, stop there*.
 
 A box that is below other box in the html will never appear above that first box. See https://btholt.github.io/intro-to-web-dev-v2/layout-css#floats when you resize the window.
 
-### Flex
+#### Flex
 
 `display: flex;` should be put in the parent container. It applies to the children, not to the element itself.
 
@@ -234,14 +234,14 @@ Most important properties:
 
 flex-direction: row-reverse
 
-### Display property
+#### Display property
 
 Every tag in CSS has a `display` property associated with it by default. In fact, CSS has a lot of hidden defaults, just like by-default all text's color is black. With `display`, it varies by what type of tag we're talking about. `divs` are `display: block`; by default while `span`s are `display: inline`; and this makes sense given their functions. However, being that we have access to CSS, we can manipulate a `span` to act like a `div` and vice-versa (though usually you'd just use the appropriate tag.)
 
 `block`, `inline`, `flex`, `table`, `none`
 
 if I say width: 200px, what is 200px wide? Unfortunately, the answer is it depends. It depends on what the value of the box-sizing property. By default, it does things the old way of writing code which if I say width: 200px I am not including the border or the padding. This is annoying because if I'm trying to fit things together well, it's much easier to include border and padding. Remember how I told you to never use the wild card selector before? This is the one exception where I permiss you to:
-```
+```css
 * {
   box-sizing: border-box;
 }
@@ -251,20 +251,25 @@ if I say width: 200px, what is 200px wide? Unfortunately, the answer is it depen
 This will make everything use the border-box sizing instead of the default one (which is called content-box but you'll never have to know that.) This is the first thing I put in every project I start. You'll need it once in one file. This will make everything by-default be border-box and thus be easier to work with. This used to be controversial to use but here is Paul Irish (really smart guy who works on Google Chrome) saying it's okay.
 https://www.paulirish.com/2012/box-sizing-border-box-ftw/
 
-### Flexbox
+
+
+#### Flexbox
 
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
-## Project
+
+
+### Project
 
 Lembrar do:
 
-```
+```css
 * {
     box-sizing: border-box;
 }
 ```
 Senão não fica alinhado.
+
 
 
 ## Javascript
@@ -302,7 +307,7 @@ Brian
 * strings. " ou ' ou `
 * string concatenation: `+`.
 * "templates" strings. Must use **back ticks**.
-```
+```javascript
 const firstName = "Brian";
 const lastName = "Holt";
 
@@ -313,7 +318,7 @@ console.log(sentence);
 console.log(sentenceWithTemplate);
 ```
 Se usar normal quotes, ele faz isso aqui:
-```
+```javascript
 let a = "human";
 
 console.log("Hello, ${a}!")
@@ -346,19 +351,19 @@ Let's talk about `===` for a second. If you use just one `=` in JavaScript, it m
 
 #### LOOPS
 
-```
+```javascript
 while (condition) {
     statements;
 }
 ```
 
-```
+```javascript
 do {
     statements;
 } while (condition);
 ```
 
-```
+```javascript
 for (<initialize>; <condition>; <increment>) {
     statements;
 }
@@ -367,7 +372,7 @@ for (<initialize>; <condition>; <increment>) {
 **Unary operators**
 
 Updating a variable:
-```
+```javascript
 friendsAtYourParty = friendsAtYourParty + 1;
 friendsAtYourParty += 1;
 friendsAtYourParty++;
@@ -380,7 +385,7 @@ Ou `-=`, `/=`, `*=`, `--`, `++`.
 
 >Functions encapsulate little pieces of logic that you can reuse all over the place.
 
-```
+```javascript
 function <name>(arguments) {
     statements;
     return <output>;
@@ -391,7 +396,7 @@ Function names generally are verbs.
 
 > The way call a function is you add parens to the end of it, like this: `someFunctionName()`. If you see parens after a variable name, you instantly know that that's a function. Inside of the parens go the parameters. These variables will be passed to the function that is being called in the order that you put them there.
 
-```
+```javascript
 function addTwo(number) {
     return number + 2;
 }
@@ -408,7 +413,220 @@ console.log(finalAnswer2)
 > 5
 ```
 
+#### Scope
 
+What matters is where the variable was created, and a scope is generally defined by any block, `{ }`.
+
+A scope can see the variables declared in its surrounding scopes.
+
+```javascript
+let status = "unchanged";
+function addFive(number) {
+  status = "changed";
+  return number + 5;
+}
+
+console.log(status);
+> "unchanged"
+addFive(10);
+console.log(status);
+> "changed"
+```
+
+#### Built-ins functions
+
+Example, strings methods. In the console (or VS Code), if you type a string and a dot, `"something".`, they will show you lots of methods (functions) available to objects of type string.
+
+Example: `string.substr(indexToStart, howManyCharactersToInclude)`
+
+The `Math` object.
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+
+
+
+### Objects
+
+Objects and arrays are collections of data.
+
+Objects are made of _keys_ and _values_. The keys must be unique.
+
+> They're extremely useful in JavaScript; they're how you'll group together like-information so that they can be used together. They contain a bunch of **keys** and **values**. The keys are on the left side of the `:` and represent how you get that piece data of out of the object. 
+
+```javascript
+const person = {
+  name: "Brian Holt",
+  city: "Seattle",
+  state: "WA",
+  favoriteFood: "🌮",
+  wantsTacosRightNow: true,
+  numberOfTacosWanted: 100
+};
+console.log(person);
+> Object {
+  "city": "Seattle",
+  "favoriteFood": "🌮",
+  "name": "Brian Holt",
+  "numberOfTacosWanted": 100,
+  "state": "WA",
+  "wantsTacosRightNow": true,
+}
+console.log(person.name);
+> "Brian Holt"
+console.log(person["name"]); // same as the line above; definitely prefer using the other one
+> "Brian Holt"
+```
+
+A vantagem dessa última notação é que é possível passar o nome da chave (que é uma string) por meio de uma variável, tipo:
+
+```javascript
+console.log(person["state"])
+> "WA
+
+const ref = 'state';
+
+console.log(person[ref])
+> "WA"
+```
+
+You can have objects inside of objects:
+
+```javascript
+const person = {
+  name: "Brian Holt",
+  city: "Seattle",
+  state: "WA",
+  favoriteFood: "🌮",
+  wantsTacosRightNow: true,
+  numberOfTacosWanted: 100,
+  address: {
+      street: "bla bla place",
+      number: "123"
+  }
+};
+
+```
+
+Why use objects instead of separate variables?
+
+> [With objects, we're] able to pass all  information as one package which makes it easy to keep track of since we're just passing one variable. 
+
+#### Properties
+
+Properties are just variables define inside of objects?
+
+
+
+#### Methods
+
+Methods are just functions defined inside of objects.
+
+```javascript
+const dog = {
+  name: "dog",
+  speak() { // or speak: function() {
+    console.log("woof woof");
+  }
+};
+
+dog.speak();
+```
+
+#### Context
+
+> In the simplest form, anywhere you are in JavaScript you have a context you are in. You can reference that context by using `this`. If I just reference `this` from the outtermost layer, it'll be the global object, which in the browser is something called `window`. `window` already has a bunch of stuff on it.
+
+> A good rule of thumb (that is unfortunately not always true) is that if you're inside an object of some sort, the `this` will be that object. If not, it'll be the global object, `window`. There are crazy exceptions to this and you can even manipulate it yourself. For now, operate with that definition.  
+
+ Javascript Global Scope, Global context (when inside a browser): `window`
+
+`window` object has many builtin functions/methods.
+
+`this.scrollY` (no contexto global), ou `window.scrollY` (your scroll position along the page).
+
+check `window.` on the Javascript Console, or VS Code.
+
+
+
+
+
+### Arrays
+
+> Objects are un-ordered collections of datas using keys and values. Arrays, in contrast, are **ordered collections of data**. If you put something in an array, it has an order.
+
+> Declare an array using `[ ]`.
+
+> Access individual elements in an array: we use square brackets again and then we reference the number that we want to access. Again, remember, the numbering starts at 0. So the first element is index 0.
+
+> Arrays also have many methods (another word for functions that live on an object) and properties (another word for key/value pairs) that live on them. Let's see some of those:
+
+`array.length`
+
+`array.join("<separator>")`
+
+`array.push(<element_to_be_inserted_at_the_end>")`
+
+`array.unshift(<element_to_be_inserted_at_the_beginning>")` 
+
+
+
+```javascript
+const courses = [
+  { teacher: "Kyle Simpson", course: "JS Function Lite" },
+  { teacher: "Sarah Drasner", course: "Intro to Vue" },
+  { teacher: "Brian Holt", course: "Complete Intro to React v3" },
+  { teacher: "Steve Kinney", course: "State Management" }
+];
+
+courses.push({ teacher: "Sean Larkinn", course: "Webpack" });
+
+// ways to change array elements:
+courses[2] = { teacher: "Brian Holt", course: "Complete Intro to React v4" };
+courses[2].course = "Complete Intro to React v5"
+
+console.log(courses);
+```
+
+#### Iterating over an array:
+
+```javascript
+const cities = [
+  "Seattle",
+  "San Francisco",
+  "Salt Lake City",
+  "Amsterdam",
+  "Hong Kong"
+];
+
+// method 1
+for (let i = 0; i < cities.length; i++) {
+  console.log(cities[i]);
+}
+```
+
+Using forEach (a method for arrays)
+
+```javascript
+// method 2
+cities.forEach(function(city) {
+  console.log(city);
+});
+```
+
+`.forEach` accepts an anonymous function as argument/parameter. And it will apply that function once over every element of the array. 
+
+This anonymous function takes in a parameter (we can call it whatever we want, I guess), and that parameter will represent the element of the array that the function is iterating over at a given time. It can also take a _phantom_ parameter, `index`, for example, so you can access the element's index of each iteration.
+
+```javascript
+// method 2
+cities.forEach(function(city, index) {
+  console.log(city);
+});
+```
+
+Actually, the names don't matter: the first parameter will be taken in as the element itself, and second as its index.
+
+_Functional programming paradigm_?
 
 
 
@@ -419,7 +637,117 @@ console.log(finalAnswer2)
 
 
 
+## The DOM
 
+[Course Notes](https://btholt.github.io/intro-to-web-dev-v2/dom)
+
+It is how javascript, html and css interact. 
+
+> The way that JavaScript and HTML/CSS interact with each other is a thing called the DOM, the document object model. The DOM is basically a bunch of objects and methods that you can call from JavaScript to interact with the HTML/CSS of the page. 
+
+`document.querySelector('.red-square')`
+
+`querySelector` takes a CSS selector as parameter and returns the first instance of that on the page.
+
+`querySelectorAll` returns all instances on the page, as an array.
+
+CSS properties are referenced in JS with the same name, but with camelCase instead of dashes.
+
+`background-color` in CSS becomes `style.backgroundColor` in JS.
+
+
+
+>* `document` is a globally available variable in the browser that you use to interact with the HTML and CSS. It a lot of methods that you can use. In this case, we're using the `querySelector` in which you pass in a CSS selector and it returns to you the **first** one of that matches selector that it finds (if you have many of them on the page, you get just the first one.) 
+>
+>- We then use the `style` object which represents all the CSS styles that are being applied to that object at that time.
+>- We then set the `backgroundColor` of that element. Notice it is `backgroundColor` and not `background-color` (camelCasing vs kebab-casing). This is how you interact with CSS via JavaScript. Anything that's kebab-cased like `padding-right` becomes camelCased, like `paddingRight`. While annoying, it'd be even more annoying if they didn't switch it since everything in JavaScript is camelCased.
+
+> There's a lot more you can do with an element than just modifying its style. You can add more HTML into it, remove it, change the text, search for different elements inside of it, get its position on the page, clone it, and a lot more. 
+
+^ can't wait.
+
+Okay, so what if we had multiple elements we wanted to modify all at once:
+
+```javascript
+<ul>
+  <li class="js-target">Unchanged</li>
+  <li class="js-target">Unchanged</li>
+  <li>Won't Change</li>
+  <li class="js-target">Unchanged</li>
+  <li>Won't Change</li>
+  <li class="js-target">Unchanged</li>
+</ul>
+<script>
+  const elementsToChange = document.querySelectorAll('.js-target');
+  for (let i = 0; i < elementsToChange.length; i++) {
+    const currentElement = elementsToChange[i];
+    currentElement.innerText = "Modified by JavaScript!";
+  }
+</script>
+```
+
+Results:
+
+- Modified by JavaScript!
+- Modified by JavaScript!
+- Won't Change
+- Modified by JavaScript!
+- Won't Change
+- Modified by JavaScript!
+
+
+
+### Events and Listeners
+
+`.addEventListener`
+
+* `'click'`,
+
+* `'keyup'` (acionado quando o usuário solta o dedo do teclado dentro de uma entrada), 
+
+* `'keydown'` (quando o usuário aperta o botão do teclado, mas aí o evento seria disparado sem  o texto começar);
+
+* `change`  (acontece quando o usuário _unfocus_ uma entrada. tipo, ele clicou numa caixa de texto. quando ele clicar fora, o `change` dispara. it waits for a _blur_ event.)  `change` events happen whenever a user types something in the input and then unfocuses the input by clicking somewhere else or hitting tab to change the focus. 
+
+  
+
+_callback function_: a function that gets called back whenever the event happens.
+
+
+
+### Event delegation / bubbling
+
+> If you have a bunch of elements that you need to listen for events on, you could attach an event listener to each but that's a bit tedious to do. Instead what is sometimes easier to do is to use what's called **event bubbling**. When event fires on an element, after that "bubbles" up to its parent, and then its parent, and its parent, etc. until it's at the root element. 
+
+```html
+<div class="button-container">
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>5</button>
+</div>
+<script>
+  document.querySelector('.button-container').addEventListener('click', function(event) {
+    alert(`You clicked on button ${event.target.innerText}`);
+  });
+</script>
+```
+
+> You can see that we only bound one event listener, and that was the div above it. Then, when we click the button, we're using the `event` parameter that is being passed into the callback. You may be wondering where that came from. It was always there, we just ignoring it. An event listener's first parameter is always an event object. There's lots of information on the event object but we're most concerned with `event.target`. `target` is the tag that the event originated from. In this case it'll be the button that caused the event. And we know that with tags you can use the `innerText` property to get the text inside of them. That's how we able to alert the correct number. Cool, right? 
+
+But, the code in this way will make the browser listen to clicks inside the div, even if it's not on the buttons (and the `target` will be all the buttons). We could limit the actions to the cases when the `target` was a tag of type `button`:
+
+```html
+<script>
+  document.querySelector('.button-container').addEventListener('click', function(event) {
+      if (event.target.tagName === "BUTTON") {
+    	alert(`You clicked on button ${event.target.innerText}`);
+      }
+      event.stopPropagation{}; // ver!
+  });
+</script>
+```
 
 
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Javascript Newbie</title>
+</head>
+<body>
+    <h1>Experimentos...</h1>
+    <div style = "border: 2px solid #F8AC08; background-color: #f9ec95; padding: 1em;">
+        <button class="event-button">Click me!</button>
+        <p class="texto-alerta-botao">Nenhum botão clicado ainda.</p>
+        <input placeholder="type into me!" class="input-to-copy" />
+        <p class="caixa-texto-copiado">Nenhum texto inserido ainda.</p>
+
+        <div class="color-box" style="height: 10em;"></div>
+        <input class="color-input" placeholder="Type a color here!" />
+        
+        <p>Caixinha</p>
+    </div>
+    <script src="./experiments2.js"></script>
+
+    <div class="button-container">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+    </div>
+    <script>
+        document.querySelector('.button-container').addEventListener('click', function(event) {
+            alert(`You clicked on button ${event.target.innerText}`);
+            console.log(event.target);
+            console.log(event);
+            console.log(event.screenX);
+        });    
+    </script>
+
+</body>
+</html>
