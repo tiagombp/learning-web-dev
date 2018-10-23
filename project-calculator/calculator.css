@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+.envelope {
+    display: flex;
+    justify-content: center;
+}
+
+.calculator {
+    width: 400px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;    
+}
+
+.visor {
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    color: white;  
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.visor > p {
+    text-align: right;
+    font-size: 30px;
+    font-family: monospace;
+    padding: 0px 5px;
+    margin: 0px;
+}
+
+.corpo {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+}
+
+.linha-botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1; /* isso faz os botões crescerem verticalmente e ocuparem todo o espaço vertical alocado no .calculator. */
+}
+
+/* com flex-grow, os botões ficam desalinhados. Se acrescentar um "flex-basis: 25%;" no .linha-botoes > button, eles ficam alinhados,
+mas as proporções dos botões duplos e triplos não ficam certas...
+
+.linha-botoes > button {
+    flex-grow: 1;
+}
+
+.linha-botoes > button.duplo {
+    flex-grow: 2;  
+}
+
+.linha-botoes > button.triplo {
+    flex-grow: 3;  
+}
+
+com flex-basis, abaixo, fica perfeito.
+
+*/
+
+.linha-botoes > button {
+    flex-basis: 25%;
+    font-size: 30px;
+}
+
+.linha-botoes > button:last-child {
+    color: white;
+    background-color: orange;
+}
+
+.linha-botoes > button:hover {
+    background-color: #999;
+}
+
+.linha-botoes > button.duplo {
+    flex-basis: 50%;  
+}
+
+.linha-botoes > button.triplo {
+    flex-basis: 75%;  
+}
