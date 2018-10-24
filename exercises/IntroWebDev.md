@@ -785,3 +785,15 @@ Lorem ipsum: if the text was readable, people would read it, and that's not the 
 Harvest / Chosen
 
 Haskell?
+
+
+
+> The problem with using percentages in conjuections with heights: your heights and widths are different. 5% of height is not the same of 5% of width, and that'll make the gutters look weird. You want the bottom gutters to be the same size as the side gutters. `margin-bottom` to the resuce! If you give the row a `margin-bottom` of `.5%` (if you're using my same numbers) then that'll work since margin is always measured as a function of width (just one of those things you have to know!) Hopefully that helps. 
+
+
+
+### Ver depois
+
+Botões que crescem com o mouseover com flex.
+
+https://codeburst.io/flexbox-flex-basis-flex-grow-41b10bcd33a3
