@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+header > h1 {
+    text-align: center;
+    font-family: 'Acme';
+    color: #4295f4;
+}
+
 .envelope {
     display: flex;
     justify-content: center;
