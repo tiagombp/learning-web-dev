@@ -4,7 +4,6 @@ let saida = "0";
 let resultado = 0;
 let operando = 0;
 let operador = "";
-let flag_inicio = true;
 
 let corpoCalculadora = document.querySelector('.corpo')
 
@@ -43,7 +42,6 @@ corpoCalculadora.addEventListener('click', function(event) {
             saida = "0";     // reinicia tudo
             resultado = 0;
             operador = "";
-            flag_inicio = true;
 
         // clicou no BACKSPACE
         
@@ -62,11 +60,10 @@ corpoCalculadora.addEventListener('click', function(event) {
 
             // isso tem que ficar na frente para quando se encadearem operações, senão ele opera com o operador anterior.
 
-            if (flag_inicio) {   /* ainda não clicou em nenhum operador */
+            if (operador === "") {   /* ainda não clicou em nenhum operador */
                 console.log("primeira vez que tô clicando num operador");
                 resultado = parseInt(saida);
                 operando = 0; // para o caso de uma sequência de operações.
-                flag_inicio = false;
                 console.log("Fim primeiro operador. Resultado: ", resultado, " | Operando: ", operando, " | Operador: ", operador);
 
             } else {
@@ -96,7 +93,7 @@ corpoCalculadora.addEventListener('click', function(event) {
             operando = parseInt(saida);
             resultado = calculaResultado(operador);
             saida = resultado;
-            flag_inicio = true;
+            operador = "";
             console.log("Fim igual. Resultado: ", resultado, " | Operando: ", operando, " | Operador: ", operador);
         }
 
