@@ -29,6 +29,24 @@ margin or padding to move stuff around?
 Margin for spacing things between each other.
 Padding to create space inside something.
 
+Botões: `cursor: pointer; `
+
+`button:active`
+
+Color Contrast Checker: aa a11y colors
+
+The blue glow around a button is `appearance`, it is useful to navigate using keyboard.
+
+script tags should always be at the end, right before the closing `body` tag, so the page is already loaded whithout waiting for the javascript.
+
+`NaN === NaN` > ` false`
+
+
+
+
+
+
+
 
 
 ## HTML
@@ -751,6 +769,94 @@ But, the code in this way will make the browser listen to clicks inside the div,
 
 
 
+## Project Javascript
+
+Brian começa com um esqueleto chamando funções, que serão definidas depois.
+
+```javascript
+let runningTotal = 0;
+let buffer = "0";
+let previousOperator;
+const screen = document.querySelector('.screen');
+
+document.querySelector('.calc-buttons').addEventListener("click", function(event) {
+    buttonClick(event.target.innerText);
+})
+
+function buttonClick(value) {
+    if (isNaN(parseInt(value))) {
+        handleSymbol(value);
+    } else {
+        handleNumber(value);
+    }
+}
+
+function handleNumber(value) {
+    
+}
+
+function handleSymbol(value) {
+    
+}
+```
+
+Ele fez pelo valor do botão, testando o que é número e o que é símbolo.
+
+Eu fiz pela classe do botão.
+
+Vamos ver as funções
+
+```javascript
+function handleNumber(value) {
+    if (buffer === "0") {
+        buffer = value;
+    } else {
+        buffer += value;
+    }
+    rerender()
+}
+```
+
+A lógica é muito semelhante, a diferença é que o código dele está todo organizado em torno de funções. Muito melhor.
+
+```javascript
+function rerender() {
+    screen.innerText = buffer;
+}
+```
+
+```javascript
+function handleSymbol(value) {
+    switch (value) {
+        case 'C':
+            buffer = "0";
+            runningTotal = 0;
+            previousOperator = null;
+            break;
+        case '=':
+            if (previousOperator === null) {
+                return;
+            }
+            flushOperation(parseInt(buffer));
+            previousOperator = null;
+            buffer = "" + runningTotal;
+            runningTotal = 0;
+            break;
+        case '<-':
+            if (buffer.length === 1) {
+                buffer = "0";
+            } else {
+                buffer = buffer.substring(0, buffer.length - 1);
+            }
+            break;
+        default:
+            handleMath(value);
+            break;
+            
+    }
+}
+```
+
 
 
 ## General comments
@@ -792,8 +898,20 @@ Haskell?
 
 
 
+`null` is the absense of anything.
+
+
+
 ### Ver depois
 
 Botões que crescem com o mouseover com flex.
 
 https://codeburst.io/flexbox-flex-basis-flex-grow-41b10bcd33a3
+
+Prettier, um auto-formatador de código.
+
+
+
+### Dúvidas
+
+como é controle de fluxo?
