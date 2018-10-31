@@ -41,9 +41,9 @@ script tags should always be at the end, right before the closing `body` tag, so
 
 `NaN === NaN` > ` false`
 
+https://github.com/toddmotto/public-apis
 
-
-
+*screaming case*: used when the variable will never change, like URLs.
 
 
 
@@ -673,6 +673,10 @@ CSS properties are referenced in JS with the same name, but with camelCase inste
 
 `background-color` in CSS becomes `style.backgroundColor` in JS.
 
+para criar um elemento: `document.createElement("<tag>")`
+
+para incluir um elemento como filho de outro: `<resultado_querySelector>.appendChild(<novo_elemento_filho>)`
+
 
 
 >* `document` is a globally available variable in the browser that you use to interact with the HTML and CSS. It a lot of methods that you can use. In this case, we're using the `querySelector` in which you pass in a CSS selector and it returns to you the **first** one of that matches selector that it finds (if you have many of them on the page, you get just the first one.) 
@@ -789,6 +793,7 @@ function buttonClick(value) {
     } else {
         handleNumber(value);
     }
+    rerender();
 }
 
 function handleNumber(value) {
@@ -813,7 +818,7 @@ function handleNumber(value) {
     } else {
         buffer += value;
     }
-    rerender()
+    // rerender() (inicialmente ficou aqui, mas depois moveu para cima, para a buttonClick() )
 }
 ```
 
@@ -856,6 +861,117 @@ function handleSymbol(value) {
     }
 }
 ```
+
+```javascript
+function handleMath(value) {
+    const intBuffer = parseInt(buffer);
+    if (runningTotal === 0) {
+        runningTotal = intBuffer;
+    } else {
+        flushOperation(intBuffer);
+    }
+    
+    previousOperator = value;
+    
+    buffer = "0";
+}
+
+function flushOperation(intBuffer) {
+    if (previousOperator === "+") {
+        runningTotal += intBuffer;
+    } else if (previousOperator === "-") {
+        runningTotal -= intBuffer;
+    } else if (previousOperator === "*") {
+        runningTotal *= intBuffer;
+    } else {
+        runningTotal /= intBuffer;
+    }
+}
+```
+
+
+
+## AJAX
+
+> Web development is full of stupid acronyms. AJAX is one of the worst offenders of this because it actually means something different than what it does. It stands for "asynchronous JavaScript and XML" which is not what it does. However it morphed and evolved **and now it's the term that we use to represent what you do when a website requests more information from a server after the page has loaded.**
+
+(tipo, Gmail)
+
+> API is just another stupid acronym, and it is just somewhere to request data from.
+
+`fetch`
+
+> What `fetch` returns is called a **promise** and it's similar to a callback that we used before. A promise, like callbacks, allows you to deal with things that don't happen immediately, things that are asynchronous. In this case, we're waiting for the API to respond with the information we asked for. It takes to request more information over the Internet and we don't want to hold up the rest of our code. 
+
+> With a promise, it's an object that represents the future answer to whatever you asked. That's sort of weird, but it ends up being convenient. So, we have this promise, and with it we call the `then` method on it and give it a function to run once that asynchronous action (the API request) finishes. 
+
+It will run the function inside of `.then ` whenever the promise ~~completes~~ _resolves_ (whenever the data comes back from the API request). The result of `fetch` will be the `response` argument in the function.
+
+``` javascript
+const DOG_URL = "https://dog.ceo/api/breeds/image/random";
+
+const promise = fetch(DOG_URL);
+
+promise
+  .then(function(response) {
+    const processingPromise = response.json();
+    return processingPromise;
+  })
+  .then(function(processedResponse) {
+    console.log(processedResponse);
+  });
+
+console.log("this will log first");
+```
+
+The response will look something like:
+
+```json
+{
+  "status": "success",
+  "message": "https://images.dog.ceo/breeds/affenpinscher/n02110627_11783.jpg"
+}
+```
+
+We have to know how the API will respond to us. In this case, we know from the documentation that it will be in json.
+
+To process/parse the json, we use the `.json()` method.
+
+But processing the json may take a while, so it is also made asynchronously, returning another promise (_promise chaining_). O próximo `then` vai ser chamado quando o processamento for finalizado.
+
+(como eu sei que algo retornado é um promise?)
+
+_promise chaining_?
+
+
+
+Acrescentando
+
+```javascript
+const DOG_URL = "https://dog.ceo/api/breeds/image/random";
+
+const promise = fetch(DOG_URL);
+const lugarDoCachorro = document.querySelector(".doggos");
+
+promise
+  .then(function(response) {
+      const processingPromise = response.json();
+      return processingPromise;
+})
+  .then(function(processedResponse) {
+      // criando o tag da imagem
+      const img = document.createElement("img");
+      // definindo os atributos do tag
+      img.src = processedResponse.message;
+      img.alt = "Cachorro fofinho";
+      // incluindo o tag como filho do div
+      lugarDoCachorro.appendChild(img);
+  });
+
+console.log("this will log first");
+```
+
+Depois que cria a `img`, o que acontece? ela fica "flutuando" em que dimensão?
 
 
 
