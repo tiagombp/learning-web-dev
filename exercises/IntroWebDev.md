@@ -1026,6 +1026,10 @@ https://codeburst.io/flexbox-flex-basis-flex-grow-41b10bcd33a3
 
 Prettier, um auto-formatador de código.
 
+Terminar: https://btholt.github.io/intro-to-web-dev-v2/ajax/
+
+* The dog.ceo API allows you to [request a list of breeds](https://dog.ceo/dog-api/documentation/). Use this list to populate a `<select></select>`. Then when a user select a dog breed, show a picture of that dog using the the [random image by breed](https://dog.ceo/dog-api/documentation/breed) API.
+
 
 
 ### Dúvidas

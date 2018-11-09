@@ -1,0 +1,35 @@
+h1 {
+    color: white;
+    background-color: firebrick;
+    font-family: 'Spicy Rice', cursive;
+    font-weight: 100;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.botao {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    height: 40px;
+}
+
+.botao > img {
+    height: 40px;
+}
+
+.doggos {
+    border-radius: 10px;
+    background-color: goldenrod;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+    margin: 10px;
+}
+
+img {
+    margin: 10px;
+}
