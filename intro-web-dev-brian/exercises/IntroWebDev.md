@@ -975,6 +975,105 @@ Depois que cria a `img`, o que acontece? ela fica "flutuando" em que dimensão?
 
 
 
+## Git and Bash
+
+### Bash
+
+`cd` , `ls`, `pwd`, `cd ~` (go to home directory), `cd .. ` (go one level up)
+
+Flags:
+
+`ls -a` (show all files, including hidden folders/files)
+
+`ls -lah` (`-l` : show in list format. `-h` just changes the way it prints file sizes. "human readable")
+
+`man ls` (`q` to quit)
+
+https://explainshell.com/
+
+(really cool!)
+
+`touch index.html` -> creates the file
+
+`echo "<h1>Hello there!</h1>" > index.html` -> puts this text into the file
+
+`more index.html`  or `cat index.html` -> shows the contents of the file.
+
+Print the file contents to the clipboard:
+
+`cat index.html | pbcopy`
+
+Esse símbolo:`|` é o pipe. takes the output and passes as argument.
+
+`vi` for vim. Escape to enter command mode, :q!
+
+
+
+### Version control
+
+`git init` Iniatilizes a repository
+
+Two stages to add something to git: staging and commit.
+
+`git add <file>`  will make the files staged and ready to be committed.
+
+`git add .` (will add/stage everything)
+
+`git add -A` (will add/stage everything *and* include anything you deleted to also be deleted from the repo)
+
+`git status` will show the files ready to be committed.
+
+`git commit -m "My first commit"` (without the `-m` it will open Vim so you can write your commit message)
+
+`git diff`
+
+`git log`
+
+http://ohshitgit.com/
+
+`git remote add origin git@github.com:tiagombp/fem-intro-web-dev.git`
+`git push origin master`
+
+https://choosealicense.com/
+
+
+
+
+
+## Node.js
+
+Run JS server-side.
+
+`"http"` -> node library for handling connections.
+
+`server.js`
+
+Open Terminal.
+
+`node server.js`
+
+localhost:3000
+
+"favicon.ico" -> every time the browswe connects to a web server, it always request the favicon (o íconezinho que aparece na aba do browser)
+
+`http.createServer(function(req, res)) {}`
+
+People usually don't use `http` directly, it is too low-level.
+
+**req** : request, everything coming from the request
+
+**res** : response, everything being sent down as response.
+
+"Express": simple server framework for node.js, built on top of http.
+
+
+
+*Fazer o exemplo de API*
+
+As últimas duas partes dos notes.
+
+
+
 ## General comments
 
 * VS Code -- Emmet abbreviation.
@@ -1018,6 +1117,14 @@ Haskell?
 
 
 
+> Don't compare yourself to others. You have a perfect knowledge of your shortcomings and an imperfect knowledge of their accomplishments. This usually means you're underestimating yourself and overestimating others
+
+
+
+https://www.firsttimersonly.com/
+
+
+
 ### Ver depois
 
 Botões que crescem com o mouseover com flex.
@@ -1029,6 +1136,10 @@ Prettier, um auto-formatador de código.
 Terminar: https://btholt.github.io/intro-to-web-dev-v2/ajax/
 
 * The dog.ceo API allows you to [request a list of breeds](https://dog.ceo/dog-api/documentation/). Use this list to populate a `<select></select>`. Then when a user select a dog breed, show a picture of that dog using the the [random image by breed](https://dog.ceo/dog-api/documentation/breed) API.
+
+*Fazer o exemplo de API*
+
+As últimas duas partes dos notes.
 
 
 
