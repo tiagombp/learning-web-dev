@@ -91,6 +91,8 @@ Second, the `console.` part is an object reference where the `log(..)` function 
 
 Another way of creating output that you can see is to run an `alert(..)` statement.
 
+Statement expressions that have no output/return value: console prints "undefined".
+
 ### Input
 
 While we're discussing output, you may also wonder about *input* (i.e., receiving information from the user).
