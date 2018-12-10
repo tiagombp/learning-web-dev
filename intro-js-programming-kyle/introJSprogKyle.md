@@ -91,7 +91,7 @@ Second, the `console.` part is an object reference where the `log(..)` function 
 
 Another way of creating output that you can see is to run an `alert(..)` statement.
 
-Statement expressions that have no output/return value: console prints "undefined".
+Statement expressions that have no output/return value (ou seja, só produzem *side effects*): console prints "undefined".
 
 ### Input
 
@@ -145,3 +145,8 @@ false;
 ```
 
 Beyond `string`/`number`/`boolean` value types, it's common for programming languages to provide *arrays*, *objects*, *functions*, and more. We'll cover much more about values and types throughout this chapter and the next.
+
+`"42"[0] // 4`
+
+
+
