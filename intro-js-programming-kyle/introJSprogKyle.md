@@ -148,5 +148,45 @@ Beyond `string`/`number`/`boolean` value types, it's common for programming lang
 
 `"42"[0] // 4`
 
+#### Coercion x conversion
 
+Kyle prefers explicit x implicit conversion.
+
+_Explicit_: 
+
+```javascript
+a = 42;
+
+a = a/ 2;
+
+a = String(a);
+
+console.log(a);
+
+// "21"
+
+b = Number(a);
+
+console.log(b);
+
+// 21
+```
+
+In JavaScript, variables do not have type -- values have the type.
+
+_Implicit_ 
+
+```javascript	
+a = 42;
+
+a = a / 2;
+
+a = a + "";
+
+console.log(a);
+
+// "21"
+```
+
+(hoje em dia, aparentemente o console do Chrome mostra strings com aspas, e não mais com cor diferente)
 
