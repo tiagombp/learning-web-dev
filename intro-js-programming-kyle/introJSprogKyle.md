@@ -190,3 +190,29 @@ console.log(a);
 
 (hoje em dia, aparentemente o console do Chrome mostra strings com aspas, e não mais com cor diferente)
 
+### Functions
+
+A block of code that can be executed _on demand_.
+
+`.toFixed(numberOfDigits)`
+
+```javascript
+function foo(par1, par2) { ... }
+// in the function declaration we call "parameters"
+
+foo(arg1, arg2)
+// in the function call we call "arguments"
+// there is a one to one match of arguments to parameters 
+
+```
+
+Sometimes, even when the function is simple, it is important to have a function because its name might turn the code more understandable.
+
+_Side effects_ of function calls: changes in global variables, for instance. Functions should be self-contained, and should not make changes outside their scope, and everything from the outer scope that will be operated by the function should be passed in as arguments. Sure, this is no hard rule. Design functions to have as little impact on the outside world as possible.
+
+### Transpilers
+
+babeljs.io
+
+
+
