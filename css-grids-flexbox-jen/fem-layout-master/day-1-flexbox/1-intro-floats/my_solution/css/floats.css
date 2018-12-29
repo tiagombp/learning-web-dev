@@ -61,7 +61,7 @@ div img {
 }
 
 /* grid system -- mobile first! */
-.col-1, .col-2, .col-3, .col-4 {
+.col-1, .col-2, .col-3, .col-4 { /* poderia ter usado o attribute selector tb */
 	width: 92%;
 }
 
