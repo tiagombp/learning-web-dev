@@ -9,6 +9,8 @@ ul {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	height: 400px;
+	align-items: flex-start;
 }
 li {
 	border: 1px solid #999;
@@ -16,7 +18,10 @@ li {
 	padding: 0.5em;
 }
 
-
+.flex2 {
+	flex-basis: 25%;
+	background-color: aqua;
+}
 
 
 
