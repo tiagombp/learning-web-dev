@@ -34,7 +34,7 @@ div img {
 .col-2-1 {background-color: aquamarine;}
 .col-3-1 {background-color: limegreen;}
 .col-4 {background-color: yellow;}
-.col-2-1.order-2 {background-color: magenta;}
+.col-2-4 {background-color: magenta;}
 
 /* grid system -- mobile first! */
 .row {
@@ -63,6 +63,7 @@ div img {
 		flex-basis: 44%;
 	}
 
+	.col-2-4,
 	.col-4 {
 		flex-basis: 92%;
 	}
@@ -71,11 +72,11 @@ div img {
 /* Desktop screen Sizes */
 @media only screen and (min-width: 768px) {
 
-	.col-1, {
+	.col-1 {
 		flex-basis: 20%;
 	}
 
-	.col-2-1,  {
+	.col-2-1, .col-2-4 {
 		flex-basis: 44%;
 	}
 
