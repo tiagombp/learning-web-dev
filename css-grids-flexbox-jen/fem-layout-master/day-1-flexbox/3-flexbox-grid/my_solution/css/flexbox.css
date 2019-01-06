@@ -42,8 +42,18 @@ div img {
 	flex-flow: row wrap;
 }
 
+.reverse {
+	flex-direction: row-reverse;
+}
+
 [class*="col-"] {
 	margin-left: 4%;
+	margin-bottom: 2px;
+}
+
+.reverse [class*="col-"] {
+	margin-right: 4%;
+	margin-left: 0;
 	margin-bottom: 2px;
 }
 
