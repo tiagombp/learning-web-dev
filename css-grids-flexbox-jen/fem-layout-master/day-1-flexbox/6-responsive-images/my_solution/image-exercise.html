@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="picturefill.min.js"></script>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<!-- visit http://scottjehl.github.io/picturefill/ for picturefill source -->
+	<div class="bkgdimg"></div>
+	<picture>
+		<source srcset="img/peace-pie-original.jpg" media="(min-width: 1200px)">
+		<source srcset="img/peace-pie-500.jpg" media="(min-width: 800px)">
+		<img src="img/peace-pie-150.jpg" alt="The original giant peace pie"> <!-- a fallback in case the browser 
+																				  is no compatible with the figure tag -->
+	</picture>
+</body>
+</html>
