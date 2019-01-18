@@ -1,0 +1,92 @@
+/* Border box declaration 
+https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+html {
+  box-sizing: border-box;
+}
+/* inherit border-box on all elements in the universe and before and after
+ */
+*, 
+*:before, 
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+	font-family: Arial, Geneva, sans-serif;
+}
+a {
+	color: #2772B0;
+}
+.wrapper {
+	width: 97%;
+	max-width: 1200px;
+	margin: 0 auto;
+	float: none;
+	background-color: #fff;
+}
+
+div img {
+	width: 100%;
+	max-width: 225px; 
+}
+
+/* que massa isso aqui embaixo */
+
+/* para todos */
+[class*="col-"] {
+	float: left;
+    margin-left: 4%;
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col-1 {
+    background-color: blue;
+}
+
+.col-2 {
+    background-color: firebrick;
+}
+
+.col-3 {
+    background-color: antiquewhite;
+}
+
+.col-4 {
+    background-color: greenyellow;
+}
+
+/* grid system -- mobile first! */
+.col-1, .col-2, .col-3, .col-4 { /* poderia ter usado o attribute selector tb */
+	width: 92%;
+}
+
+/* Mobile Landscape Screen Sizes */
+@media only screen and (min-width: 480px)  {
+    .col-1, .col-2, .col-3 {
+        width: 44%;
+    }
+
+}
+/* Desktop screen Sizes */
+@media only screen and (min-width: 768px) {
+    .col-1 {
+        width: 20%;
+    }
+
+    .col-2 {
+        width: 44%;
+    }
+
+    .col-3 {
+        width: 68%
+    }
+
+    .col-4 {
+        width: 92%
+    }
+}
