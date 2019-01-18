@@ -190,3 +190,59 @@ console.log(a);
 
 (hoje em dia, aparentemente o console do Chrome mostra strings com aspas, e não mais com cor diferente)
 
+
+
+### Variables and blocks
+
+You should always formally declare your variables.
+
+`var`, `let` and `const`. And also by assigning a function value:
+
+`function a() {}`
+
+_Blocks_ : pairing of curly braces with statements inside.
+
+Normally associated with other statements.
+
+function declaration:
+
+`function foo() {}`
+
+function expressions attached to variable declarations:
+
+`let bar = function() {}`
+
+
+
+### Conditional
+
+```javascript
+if (<condition>) {
+    statements;
+    }
+```
+
+Condition may not be something explicitly true or false.
+
+JS converts/coerces values to boolean, using the following criteria for _falsy values_:
+
+`0,  -0, NaN, "", false, null, undefined`
+
+Otherwise, it is `true`.
+
+
+
+Operator `void`: 
+
+
+
+### Loop
+
+Runs until the condition fails, until the condition becomes false. Different from thinking that it runs _while_ the condition is true.
+
+`break` statement allows to stop the loop.
+
+A loop runs until something stops it from running.
+
+
+
