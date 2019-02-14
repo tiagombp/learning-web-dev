@@ -3,33 +3,41 @@
   width: 600px;
   height: 600px;
   background: url(painting.png) no-repeat;
+  display: grid;
  
 }
 div {
 	border: 1px solid black;
 	background-color: white;
-	opacity: 0.5;
+  opacity: 0.5;
 }
 .a {
-
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
 }
 .b {
-
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
 }
 .c {
-
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
 }
 .d {
-
+  grid-column: 1 / 2;
+  grid-row: 3 / 5;
 }
 .e {
-
+  grid-column: 2 / 4;
+  grid-row: 3 / 5;
 }
 .f {
-
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
 }
 .g {
-	
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;	
 }
 
 

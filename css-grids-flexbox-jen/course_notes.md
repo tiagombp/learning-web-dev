@@ -67,3 +67,26 @@ https://timkadlec.com/2012/04/media-query-asset-downloading-results/
 	flex: shorthand for grow, shrink, and basis (default:  0 1 auto)
 	
 	align-self: overrides alignment set on parent
+
+## Grid
+
+```{html}
+<div class = "wrapper">
+	<div class = "col-1"></div>
+	<div class = "col-2"></div>
+	<div class = "col-3"></div>
+	<div class = "col-4"></div>
+</div>
+```
+
+```{css}
+.wrapper {
+	display: grid;
+	grid-gap: 10px;
+}
+
+.col-1 {
+	grid-column: 1 / 2;
+}
+```
+
