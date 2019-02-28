@@ -217,3 +217,13 @@ Children (Grid Items)
 	align-self: start | end | center | stretch;
 		Aligns content in a grid item on the column axis. Overrides align-items.
 
+No caso do grid, vale a pena um media query para os diversos tipos de tamanho de tela.
+
+```css
+@media (max-device-width: 749px) {
+	.wrapper {
+		display: block;
+	}
+}
+```
+max/min-width x max/min-device-width
