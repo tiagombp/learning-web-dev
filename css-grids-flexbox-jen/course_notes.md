@@ -227,3 +227,28 @@ No caso do grid, vale a pena um media query para os diversos tipos de tamanho de
 }
 ```
 max/min-width x max/min-device-width
+
+### Grid areas
+
+```css
+	.wrapper{
+		grid-template-columns: 1fr 3fr;
+		grid-template-rows: auto;
+		grid-template-areas:
+		"sidebar header header header"
+		"sidebar article article article";
+	}
+```
+Ou seja, "sidebar" vai ocupar uma fração na primeira linha, e "header", 3.
+Eu poderia ter colocado apenas:
+
+ "sidebar header"
+ "sidebar article"
+
+por causa da forma como especifiquei as colunas (1fr 3fr). ele assumiria que sidebar ocuparia 1fr, e header os próximos 3fr.
+
+Mas, se eu tivesse especificado `grid-template-columns: 1fr 1fr 1fr 1fr;` (ou `repeat(4, 1fr)`), ele deixaria duas colunas em branco.
+
+Para incluir deliberadamente uma coluna em branco, usar pontos `.`, ou `...`.
+
+Dá para fazer nesting com o grid, um grid-container dentro de um grid-item. Ver exemplo 13, de como o comportamento muda conforme a largura da página.
