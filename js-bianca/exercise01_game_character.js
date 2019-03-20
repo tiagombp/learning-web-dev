@@ -15,3 +15,14 @@ game.characters.push("Mr. Green");
 
 game.weapons = ["candlestick", "knife", "lead pipe", "hammer", "letter opener"];
 game.rooms = ["Ballroom", "Parlour", "Library", "Diner Hall"];
+
+// 2. Create an object that looks like this:
+// {"name": "Rusty", "room":"kitchen", "weapon":"candlestick"}
+// Extract out the weapon and location using destructuring
+
+let combination = {'name': "Rusty", 'room': "Kitchen", 'weapon': "candlestick"};
+
+let {room, weapon} = combination;
+
+room; // "Kitchen"
+weapon; // "candlestick"
