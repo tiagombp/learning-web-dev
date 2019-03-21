@@ -107,6 +107,27 @@ let suspectsList = [];
 // let's "hydrate" this list
 
 for (let i = 0; i < suspects_names.length; i++) {
-    suspect = CreateSuspectObjects(suspects_names[i]);
+    let suspect = CreateSuspectObjects(suspects_names[i]);
     suspectsList.push(suspect);
 }
+
+// outra versão
+
+for (let i = 0; i < suspects_names.length; i++) {
+    suspectsList.push(CreateSuspectObjects(suspects_names[i]));
+}
+
+// looping with _.each
+
+_.each(suspects, function(name){
+    let suspect = CreateSuspectObjects(name);
+    suspectsList.push(suspect);
+});
+
+// or
+
+_.each(suspects, function(name){
+    suspectsList.push(CreateSuspectObjects(name));
+});
+
+// precisa de um pacote ("underscore"). "functional utility"
