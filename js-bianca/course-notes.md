@@ -125,3 +125,18 @@ a.speak(); // => "my name is Miss Scarlet.
 
 let suspects = [];
 ```
+
+## _.each / .forEach()
+
+* Iterates over a *list* of elements, passing the values to a function.
+* Each invocation of *iterator*, the function, is called with **three** arguments: (element, index, list). If *list* is a Javascript object, *iterator*'s arguments will be: (value, key, list).
+
+What they are useful for?
+* looping over lists.
+* .forEach() is called on the array, as a method, instead of taking the argument as an argument (as _.each).
+
+"_" is an object (it has a dot!)
+
+
+
+

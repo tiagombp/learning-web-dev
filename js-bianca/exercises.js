@@ -131,3 +131,29 @@ _.each(suspects, function(name){
 });
 
 // precisa de um pacote ("underscore"). "functional utility"
+
+// EXERCÍCIO: implementar _.each(list, callback)
+
+let _ = {
+    each(list, callback) {
+        output = [];
+        let size = list.length;
+        for (let i = 0; i < size; i++) {
+            let el = list[i]
+            output.push(callback(el))
+        }
+        return(output)
+    }
+}
+
+// teste
+
+function CreateSuspectObjects(name) {
+    return {
+        name: name,
+        color: name.split(" ")[1],
+        speak() {console.log(`my name is ${name}`)}
+    }
+}
+
+let suspects = ['Miss Scarlet', 'Colonel Mustard', 'Mr. White'];
