@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <svg>
+        <rect />
+        <rect />
+        <rect />
+        <rect />
+        <rect />
+      </svg>
+      <script>
+        var data = [100, 250, 175, 200, 120];
+        
+        d3.selectAll('rect')
+            .data(data)
+            .attr('x', (d, i) => i * rectWidth)
+            .attr('y', d => height - d)
+            .attr('width', rectWidth)
+            .attr('height', d => d)
+            .attr('fill', 'blue')
+            .attr('stroke', '#fff');
+    
+      </script>
+</body>
+</html>
