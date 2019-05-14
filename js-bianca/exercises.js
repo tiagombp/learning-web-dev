@@ -132,8 +132,9 @@ _.each(suspects, function(name){
 
 // precisa de um pacote ("underscore"). "functional utility"
 
-// EXERCÍCIO: implementar _.each(list, callback)
+////////////////////// EXERCÍCIO: implementar _.each(list, callback)
 
+// minha solução inicial, que implementa na verdade um MAP! :0
 let _ = {
     each(list, callback) {
         output = [];
@@ -146,6 +147,35 @@ let _ = {
     }
 }
 
+// alternativamente (outro tipo de loop, mais educadado para objects)
+
+let _ = {
+    each(list, callback) {
+        output = [];
+        let size = list.length;
+        for (let key in list) {
+            let el = list[key]
+            callback(el)
+        }
+        return(output)
+    }
+}
+
+// solução corrigida
+let _ = {
+    each(list, callback) {
+        output = [];
+        let size = list.length;
+        for (let i = 0; i < size; i++) {
+            let el = list[i]
+            callback(el, i, list) // eu não sabia q ele retornava o "i" e o "list", acrescentei isso depois. minha
+        } // a função do pacote undescore retorna a própria lista
+    }
+}
+
+
+
+
 // teste
 
 function CreateSuspectObjects(name) {
@@ -157,3 +187,56 @@ function CreateSuspectObjects(name) {
 }
 
 let suspects = ['Miss Scarlet', 'Colonel Mustard', 'Mr. White'];
+
+_.each(suspects, CreateSuspectObjects)
+
+_.each(suspects, CreateSuspectObjects)[1].speak()
+
+
+/////////////// MAP
+
+
+function CreateSuspectObjects(name) {
+    return {
+      name: name,
+      color: name.split(' ')[1],
+      speak() { 
+        console.log(`my name is ${this.name}`); 
+      }
+    };
+  };
+  
+let suspects_names = ['Miss Scarlet', 'Colonel Mustard', 'Mr. White'];
+
+let suspects_list = _.map(suspects, function(name){
+    return CreateSuspectObjects(name);
+});
+
+////// implement MAP
+
+let _t = {
+    map(list, callback) {
+        output = [];
+        let size = list.length;
+        for (let i = 0; i < size; i++) {
+            let el = list[i]
+            output.push(callback(el))
+        }
+        return(output)
+    }
+}
+
+// alternativamente (outro tipo de loop, mais educadado para objects)
+
+let _t = {
+    map(list, callback) {
+        output = [];
+        let size = list.length;
+        for (let key in list) {
+            let el = list[key]
+            output.push(callback(el))
+        }
+        return(output)
+    }
+}
+

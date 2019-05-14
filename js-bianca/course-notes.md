@@ -125,7 +125,7 @@ a.speak(); // => "my name is Miss Scarlet.
 
 let suspects = [];
 ```
-
+ 
 ## _.each / .forEach()
 
 * Iterates over a *list* of elements, passing the values to a function.
@@ -136,6 +136,42 @@ What they are useful for?
 * .forEach() is called on the array, as a method, instead of taking the argument as an argument (as _.each).
 
 "_" is an object (it has a dot!)
+
+Para iterar sobre um array, dá para usar `for(let i = 0; i < obj.length; i++) {console.log(obj[i])}`
+Para iterar sobre um objeto, tem que usar `for(let key in obj) {console.log(obj[key])}` <- usa o bracket aqui por "key" tem a regra de nome de variável.
+
+Arrays are OBJECTS, então `typeof(obj) === "array"` sempre vai retornar FALSE.
+Para testar se é array, `Array.isArray(obj)`
+
+`if (algo que retorne undefined) {} else {};`
+Vai para o `else`! 
+
+## _.map() / .map()
+
+_.map(list, iterator)
+
+`_.map([1,2,3]), function(v, i, list) {console.log(v)}`
+
+* Produces a new array of values by mapping each value in __list__ through a transformation function(__iterator__).
+* Each invocation of __iterator__ is called with three arguments: (element, index, list). If __list__ is a JS object, __iterator__'s arguments will be (value, key, list).
+
+`each` x `map`: 
+
+* each does not return anything.
+* map returns an array every time.
+
+map: we use it to take lists and return a new array of the same size.
+
+```javascript
+const weapons = ['candlestick', 'lead pipe', 'revolver'];
+
+const makeBroken = function(item) {
+  return `broken ${item}`;
+}
+```
+
+
+
 
 
 
