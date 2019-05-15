@@ -92,6 +92,17 @@ So what d3 does is: loop through each rectangle in the selection, and passes in 
 
 For example, in `.attr('x', (d, i) => i * rectWidth)` you're saying, "hey, for each of these rectangle elements, this is what I want my x attribute to be.".
 
+Notar que essa função que vai buscar / calcular o valor que se quer atribuir ao atributo em questão deve sempre ter um `return`, para o d3 conseguir identificar o valor que vai ser usado. No entanto, dentro da definição da função, é possível incluir, por exemplo, um `console.log`.
+
+```js
+    d3.selectAll('rect')
+    	.data(data)
+    	.attr('x', function(d, i) {
+        console.log(i, d, i * rectWidth, height - d); // logging
+        return i * rectWidth})
+    	.attr('y', d => height - d)
+```
+
 (como eram as seleções no JS mesmo?)
 <rect> properties?
 como faz console log numa chamada do d3?
