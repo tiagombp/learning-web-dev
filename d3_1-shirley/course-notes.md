@@ -103,6 +103,47 @@ Notar que essa função que vai buscar / calcular o valor que se quer atribuir a
     	.attr('y', d => height - d)
 ```
 
+**svg**
+
+Coordinate system goes like
+         x
+  0 ---------------- >
+  |
+  |
+y |
+  |
+  |
+  v
+
+## Enter - Append
+
+```html
+  <svg></svg>
+  <script>
+    var rectWidth = 100;
+    var height = 300;
+    var data = [100, 250, 175, 200, 120];
+    
+    var svg = d3.select('svg');
+    svg.selectAll('rect')
+    	.data(data)
+    	.enter().append('rect')
+    	.attr('x', (d, i) => i * rectWidth)
+    	.attr('y', d => height - d)
+    	.attr('width', rectWidth)
+    	.attr('height', d => d)
+    	.attr('fill', 'blue')
+    	.attr('stroke', '#fff');
+
+  </script>
+```
+
+This piece of code gives the same result. It did not explicitly declared the <rect> elements.
+
+
+## Dúvidas
+
+diferença de fazer um d3.select e um document.querySelector / .getElementsByTagName?
 (como eram as seleções no JS mesmo?)
 <rect> properties?
 como faz console log numa chamada do d3?
