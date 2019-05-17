@@ -140,6 +140,86 @@ y |
 
 This piece of code gives the same result. It did not explicitly declared the <rect> elements.
 
+But: `svg.selectAll('rect')` --> what are we even selecting?!
+
+It's an empty selection! But how are those bars appearing?
+
+Here's the magic: `.data(data).enter().append('rect')`
+
+> So when we do .data and we enter in the set of data, we pass in the set of data like we did before. This's what .data is calculating. It's saying, here is all my data that I had been posting and this all the rectangle elements that exist on the screen right now which just happens to be zero. Which means I need five rectangles, I need to create five rectangles to match that data. And that's all .data figures out. 
+
+> And then what .enter comes and does is, it says, okay, I need to have five place holders for the right elements to make sure it matches the data. So, it just puts in these five place holders. 
+
+> And then finally, when you .append, it takes those placeholders and actually creates rectangle and rect elements out of them, and also at the same time binds all of that data. Yeah, so that's essentially what's happening for data Enter-Append
+
+Exemplo 2, comentando a sequência.
+
+```js
+		var rectWidth = 100;
+    var height = 300;
+    var data = [100, 250, 175, 200, 120];
+    
+    var svg = d3.select('svg');
+    let enter = svg.selectAll('rect');
+//    	.data(data)
+//    	.enter().append('rect')
+//    	.attr('x', (d, i) => i * rectWidth)
+//    	.attr('y', d => height - d)
+//    	.attr('width', rectWidth)
+//    	.attr('height', d => d)
+//    	.attr('fill', 'blue')
+//    	.attr('stroke', '#fff');
+    console.log(enter);
+```
+Esse objeto `enter` vai estar vazio.
+
+i. Aí tira o comentário da linha `.data(data)`. O objeto agora vai ter length 5, vazia por dentro.
+
+> So `_groups` is essentially what D3 knows is on the screen.
+
+Em `_enter`, vemos os 5 placeholders, vazios, mas com os respectivos valores de `data` associados.
+
+ii. quando tira o comentário de `.enter()`, vemos os placeholders dentro de `_groups`.
+
+iii. quando finalmente tira o de `.append('rect')`, we get the rectangles elements, with the data bound.
+
+À medida que acrescentamos valores à array de dados, novos elementos vão sendo criados! 
+
+> This is why D3 stands for data driven documents, because the idea is the dom should reflect the data that you have.
+
+Como os valores que estão sendo atribuídos aos atributos vêm de funções, dá para fazer muitas coisas. Tipo, colorir com outra cor as barras de valor superior a tanto. 
+
+> And that's the beauty of D 3 that once you have the data bound, you can do absolutely anything with it. You can return for the functions. You can do anything you want as long as it returns a valid value for that specific attribute.
+
+```js
+		var rectWidth = 50;
+    var height = 300;
+    var data = [100, 250, 175, 200, 120, 230, 50];
+    let threshold = 230;
+    
+    var svg = d3.select('svg');
+    let enter = svg.selectAll('rect')
+    	.data(data)
+    	.enter()
+      .append('rect')
+    	.attr('x', (d, i) => i * rectWidth)
+    	.attr('y', d => height - d)
+    	.attr('width', rectWidth)
+    	.attr('height', d => d)
+    	.attr('fill', function(d) {
+        if (d > threshold) return 'firebrick'
+        else return 'dodgerblue'})
+    	.attr('stroke', '#fff');
+    console.log(enter);
+```
+
+
+
+
+
+
+  
+
 
 ## Dúvidas
 
@@ -147,4 +227,5 @@ diferença de fazer um d3.select e um document.querySelector / .getElementsByTag
 (como eram as seleções no JS mesmo?)
 <rect> properties?
 como faz console log numa chamada do d3?
+o que é o "0" em "_groups"?
 
