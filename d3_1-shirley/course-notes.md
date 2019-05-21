@@ -212,6 +212,46 @@ Como os valores que estão sendo atribuídos aos atributos vêm de funções, d�
     	.attr('stroke', '#fff');
     console.log(enter);
 ```
+> How to check the state of the DOM elements on the screen and what data has been bound to them?
+
+  <script>
+		var rectWidth = 50;
+    var height = 300;
+    var data = [100, 250, 175, 200, 120, 230, 50];
+    let threshold = 230;
+    
+    var svg = d3.select('svg');
+    let selecao = svg.selectAll('rect')
+    	.data(data)
+    	.enter()
+      .append('rect')
+    	.attr('x', (d, i) => i * rectWidth)
+    	.attr('y', d => height - d)
+    	.attr('width', rectWidth)
+    	.attr('height', d => d)
+    	.attr('fill', function(d) {
+        if (d>threshold) return 'firebrick'
+        else return 'dodgerblue'})
+    	.attr('stroke', '#fff');
+    console.log(selecao);
+    console.log(selecao.nodes());
+    console.log(selecao._groups[0]);
+  </script>
+
+Esses dois últimos logs retornam essencialmente a mesma coisa.
+
+(Mas `console.log(selecao.nodes() === selecao._groups[0])` retorna `false`.)
+
+```js
+  console.log(selecao);
+  console.log(selecao.nodes());
+  console.log(selecao._groups[0]);
+  console.log(selecao.data());
+```
+
+Esse `selecao.data()`, com `data()` sem nenhum parâmetro, retorna uma array com os dados que foram amarrados.
+
+> I think there's nothing really special about what D3 is doing So D3 is just supposed to be kind of this utility function, this tool to help you manipulate the DOM. So if you use SVG, if you use Canvas, if you use HTML, D3 is basically just a tool for you to manipulate that.
 
 
 
@@ -225,6 +265,7 @@ Como os valores que estão sendo atribuídos aos atributos vêm de funções, d�
 
 diferença de fazer um d3.select e um document.querySelector / .getElementsByTagName?
 (como eram as seleções no JS mesmo?)
+como selecionar parent, sibling etc., sem jquery?
 <rect> properties?
 como faz console log numa chamada do d3?
 o que é o "0" em "_groups"?
