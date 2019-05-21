@@ -263,18 +263,53 @@ O exemplo de quando já existem dois <rect> hardcoded dentro de <svg>, e a matri
 Scales and Axes
 ------------------------------------------------------
 
+https://github.com/d3/d3-scale
 
+> I like to think of it as like data binding is one of the core parts of D3 and then also enter-update-exit is one of the core parts of D3. And I personally maybe in a biased view think that if you just grasp those two the rest of the D3 library makes so much sense. Shirley Wu: Okay, so this is where we kinda go a little bit outside that core part and then just have a little bit of fun or what I think is fun.
 
-> I like to think of it as like data binding is one of the core parts of D3 and then also enter-update-exit is one of the core parts of D3. And I personally maybe in a biased view think that if you just grasp those two the rest of the D3 library makes so much sense. Shirley Wu: Okay, so this is where we kinda go a little bit outside that core part and then just have a little bit of fun or what I think is fun
-
-SCALE: mapping from *data attributes (domain)* to *to display (range)*
+Mike Bostock:
+> If visualization is constructing “visual representations of abstract data to amplify cognition”, then perhaps the most important concept in D3 is the scale, which maps a dimension of abstract data to a visual variable.
 
 > for my examples thus far we give really nice values, right? Between zero to 200 renders nicely on the screen. But what if you had data whose values were between zero and one. If you just rendered that as height, it won't really show up for you. Or will like, if your height was you know a thousand something. Like 2,000, or 10,000 or something like that.
 
+Types os scale in D3:
 
+* Continuous (Linear, Power, Log, Identity, Time)
+* Sequential
+* Diverging
+* Quantize
+* Quantile
+* Threshold
+* Ordinal (Band, Point)
 
+SCALE: mapping from *data attributes, values (domain)* to *to display (range)*
 
-  
+date  -> x-value
+value -> y-value
+value -> opacity
+etc.
+
+To set the _domain_ and the _range_:
+
+```js
+  d3.scaleLinear()
+    .domain([min, max]) // input
+    .range([min, max]); // output
+```
+
+How would you get min and max?
+```js
+// get min/max
+var min = d3.min(data, d => d[city]); // "city" would be the "accessor"
+var max = d3.max(data, d => d[city]);
+
+// or use extent, which gives back [min, max]
+var extent = d3.extent(data, d => d[city]);
+
+var yScale = d3.scaleLinear()
+  .domain(extent)
+  .range([height, 0]);
+```
 
 
 Dúvidas
