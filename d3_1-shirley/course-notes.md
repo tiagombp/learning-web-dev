@@ -40,7 +40,9 @@ Forces
 
 Bl.ocks & Blockbuilder (search)
 
-# Selections and Data
+
+Selections and Data
+------------------------------------------------------
 
 https://github.com/d3/d3-selection
 
@@ -115,7 +117,9 @@ y |
   |
   v
 
-## Enter - Append
+
+Enter - Append
+------------------------------------------------------
 
 ```html
   <svg></svg>
@@ -255,7 +259,11 @@ Esse `selecao.data()`, com `data()` sem nenhum parâmetro, retorna uma array com
 
 O exemplo de quando já existem dois <rect> hardcoded dentro de <svg>, e a matriz de dados tem 5 elementos. Com `.data()`, são criados placeholders para os rects que ainda não existem (3) e os dados (os três últimos elementos) são amarrados a esses três rects, e os dois <rect>s já existentes aparecem em `._groups`. Mas depois que é feito um `.append()`, só permanecem em `.groups` os três rects que foram criados por `.append()` (embora ele tenha um length de 5! Muito doido).
 
-## Scales and Axes
+
+Scales and Axes
+------------------------------------------------------
+
+
 
 > I like to think of it as like data binding is one of the core parts of D3 and then also enter-update-exit is one of the core parts of D3. And I personally maybe in a biased view think that if you just grasp those two the rest of the D3 library makes so much sense. Shirley Wu: Okay, so this is where we kinda go a little bit outside that core part and then just have a little bit of fun or what I think is fun
 
@@ -264,10 +272,13 @@ SCALE: mapping from *data attributes (domain)* to *to display (range)*
 > for my examples thus far we give really nice values, right? Between zero to 200 renders nicely on the screen. But what if you had data whose values were between zero and one. If you just rendered that as height, it won't really show up for you. Or will like, if your height was you know a thousand something. Like 2,000, or 10,000 or something like that.
 
 
+
+
   
 
 
-## Dúvidas
+Dúvidas
+======================================================
 
 diferença de fazer um d3.select e um document.querySelector / .getElementsByTagName?
 (como eram as seleções no JS mesmo?)
