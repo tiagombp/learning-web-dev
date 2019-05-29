@@ -311,6 +311,61 @@ var yScale = d3.scaleLinear()
   .range([height, 0]);
 ```
 
+Scales I use often
+
+// continuous
+d3.scaleLinear()
+d3.scaleLog()
+d3.scaleTime()
+
+// ordinal
+d3.scaleBand()
+
+Ver `d3.timeFormat()`.
+
+### Axis
+
+https://github.com/d3/d3-axis
+
+Scales are really the mapping, the translation.
+To display de axis, there's d3.axis
+Takes the scale and renders it, translates it to a set of axis. It renders your axis into the DOM.
+
+```js
+// get min/max
+var min = d3.min(data, d => d[city]);
+var max = d3.max(data, d => d[city]);
+
+// or use extent, which gives back [min, max]
+var extent = d3.extent(data, d => d[city]);
+
+var yScale = d3.scaleLinear()
+  .domain(extent)
+  .range([height, 0]);
+
+  var yAxis = d3.axisLeft()
+    .scale(yScale); // pass in a scale
+
+  d3.select('svg')
+    // create a group element (o container!) we can translate 
+    // so that the axis will be visible in SVG
+    .append('g')
+    .attr('transform', 'translate(40, 20)')
+    // selection.call(yAxis) is the same as yAxis(selection)
+    // and an axis will be created within the selection
+    .call(yAxis);
+```
+
+What d3 does under the hood is creating a bunch of <path> and <text> svg elements -- que serão criados dentro desse <g>.
+
+O translate te permite posicionar os eixos em um local diferente de `0,0`..
+
+Como se formata?
+
+`axis.tickFormat([format])`
+`axis.tickFormat(d3.format(",.0f"));`
+
+Dá para passar uma função, e aí formatar condicionalmente.
 
 Dúvidas
 ======================================================
