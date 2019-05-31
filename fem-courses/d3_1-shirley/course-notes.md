@@ -321,7 +321,7 @@ d3.scaleTime()
 // ordinal
 d3.scaleBand()
 
-Ver `d3.timeFormat()`.
+Ver `d3.timeFormat()`, `d3.scaleQuantize()`, `d3.scaleTime()`
 
 ### Axis
 
@@ -343,18 +343,23 @@ var yScale = d3.scaleLinear()
   .domain(extent)
   .range([height, 0]);
 
-  var yAxis = d3.axisLeft()
-    .scale(yScale); // pass in a scale
+// display axis
+var yAxis = d3.axisLeft()
+  .scale(yScale); // pass in a scale
 
-  d3.select('svg')
-    // create a group element (o container!) we can translate 
-    // so that the axis will be visible in SVG
-    .append('g')
-    .attr('transform', 'translate(40, 20)')
-    // selection.call(yAxis) is the same as yAxis(selection)
-    // and an axis will be created within the selection
-    .call(yAxis);
+d3.select('svg')
+  // create a group element (o container!) we can translate 
+  // so that the axis will be visible in SVG
+  .append('g')
+  .attr('transform', 'translate(40, 20)')
+  // selection.call(yAxis) is the same as yAxis(selection)
+  // and an axis will be created within the selection
+  .call(yAxis); // render the axis, returns the axis selection.
 ```
+
+<g> is an svg element that is like a container that helps you have other svg elements inside it.
+
+svg allows you to nest elements, so this <g> is a container where you can nest all the other elements into. an then you can apply transformations to the whole group element.
 
 What d3 does under the hood is creating a bunch of <path> and <text> svg elements -- que serão criados dentro desse <g>.
 
@@ -362,14 +367,79 @@ O translate te permite posicionar os eixos em um local diferente de `0,0`..
 
 Como se formata?
 
+```js
+     	var yAxis = d3.axisLeft()
+        .ticks(20) // vai por 20 divisões
+      	.scale(yScale);
+```
+
 `axis.tickFormat([format])`
 `axis.tickFormat(d3.format(",.0f"));`
 
 Dá para passar uma função, e aí formatar condicionalmente.
 
+Para ver o objeto:
+
+```js
+      let eixo = d3.select('svg').append('g')
+        .attr('transform', 'translate(40, 20)')
+      	.call(yAxis);
+      
+      console.log(eixo);
+```
+Vai exibir isso no console:
+
+ut {_groups: Array(1), _parents: Array(1)}
+_groups: Array(1)
+0: Array(1)
+0: g
+childNodes: NodeList(13)
+// a lista de elementos que formam o eixo aqui.
+
+Se fizer `console.log(eixo.nodes());`, retorna isso aqui no console (a mesma estrutura anterior, mas a partir do nível 4 de profundidade):
+
+[g]
+0: g
+childNodes: NodeList(13)
+
+```js
+      let texto = eixo.selectAll('text')
+      console.log(texto);
+      console.log(texto.nodes());
+```
+ Isso seleciona todos os elementos svgs que são "text", e os loga no console.
+
+Mostra os dados que estão amarrados a esses elementos: `console.log(texto.data());`
+  
+Formata condicionalmente o texto dos labels:
+```js
+      let texto2 = eixo.selectAll('text')
+        .attr('fill', function(d) {
+          return d > 60 ? "red" :  "blue";})
+```
+
+Notar que podemos encadear seleções. Nesse exemplo, https://bl.ocks.org/tiagombp/9b899d65f0d2ac77d02a7ef7d7228f4a,
+fizemos o seguinte:
+
+```js
+      let eixo = d3.select('svg').append('g')
+        .attr('transform', 'translate(40, 20)')
+      	.call(yAxis);
+
+      let texto2 = eixo.selectAll('text')
+        .attr('fill', function(d) {
+          return d > 60 ? "red" :  "blue";})
+```
+
+### Exercício!
+1. draw the bars using the right scales
+2. get the axes
+
+
 Dúvidas
 ======================================================
 
+o que é um pouco confuso é pq, enquanto vc está aparentemente só definindo uma variável, ele já está aplicando as funções e produzindo um efeito no gráfico.
 diferença de fazer um d3.select e um document.querySelector / .getElementsByTagName?
 (como eram as seleções no JS mesmo?)
 como selecionar parent, sibling etc., sem jquery?
