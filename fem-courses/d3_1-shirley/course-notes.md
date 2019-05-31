@@ -439,6 +439,7 @@ fizemos o seguinte:
 Dúvidas
 ======================================================
 
+como manipular um dataset no JS / D3?
 o que é um pouco confuso é pq, enquanto vc está aparentemente só definindo uma variável, ele já está aplicando as funções e produzindo um efeito no gráfico.
 diferença de fazer um d3.select e um document.querySelector / .getElementsByTagName?
 (como eram as seleções no JS mesmo?)
