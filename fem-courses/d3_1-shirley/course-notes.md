@@ -431,15 +431,23 @@ fizemos o seguinte:
           return d > 60 ? "red" :  "blue";})
 ```
 
+```js
+console.log(yScale(50)); // o yScale(), como definimos, nada mais é que uma função, para a qual podem ser passados valores. Ele vai retornar a altura em pixels que corresponde a 50 graus, conforme o domínio e o range que foi definido.
+```
+
+`.clamp
+
 ### Exercício!
 1. draw the bars using the right scales
 2. get the axes
 
 
 
+
 Dúvidas
 ======================================================
 
+`.call`? (d3.selection) ( aparentemente, `svg.append('g').call(eixo_y)` equivale a `eixo_y(svg.append('g'))` )
 como manipular um dataset no JS / D3?
 o que é um pouco confuso é pq, enquanto vc está aparentemente só definindo uma variável, ele já está aplicando as funções e produzindo um efeito no gráfico.
 diferença de fazer um d3.select e um document.querySelector / .getElementsByTagName?

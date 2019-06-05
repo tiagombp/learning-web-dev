@@ -24,7 +24,7 @@
     var city = 'New York';
     var width = 800;
     var height = 300;
-    var margin = {top: 20, bottom: 20, left: 20, right: 20}; // convenção
+    var margin = {top: 20, bottom: 20, left: 30, right: 20}; // convenção
     
     // dataset of city temperatures across time
     d3.tsv('data.tsv', (err, data) => {
@@ -70,11 +70,18 @@
       let yScale = d3.scaleLinear()
          .domain(yExtent)
          .range([height - margin.bottom, margin.top]);
+      // lembrar que as coordenadas do svg começam de 0,0 no canto superior esquerdo.
+      
+      let heightScale = d3.scaleLinear()
+         .domain(yExtent)
+         .range([0, height - margin.bottom - margin.top]);
      
-      console.log(yScale(50)) // o yScale(), como definimos, nada mais é que uma função, para a qual podem ser passados valores. Ele vai retornar a altura em pixels que corresponde a 50º, conforme o domínio e o range que foi definido.
+      console.log(yScale(50)); // o yScale(), como definimos, nada mais é que uma função, para a qual podem ser passados valores. Ele vai retornar a altura em pixels que corresponde a 50 graus, conforme o domínio e o range que foi definido.
         
                   
       // create the rectangles
+      
+      /*
       let svg = d3.select('svg');
       let selecao = svg.selectAll('rect')
         .data(data)
@@ -87,6 +94,20 @@
         .attr('fill', 'lightcoral')
         .attr('stroke', 'white')
         .attr('transform', 'translate(40,20)');
+       */
+      
+      let svg = d3.select('svg');
+      let selecao = svg.selectAll('rect')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('x', d => xScale(d.date))
+        .attr('y', d => yScale(d[city]))
+        .attr('width', 2)
+        .attr('height', d => heightScale(d[city]))
+        .attr('fill', 'lightcoral')
+        .attr('stroke', 'white')
+
       
       console.log(selecao);
       
@@ -98,16 +119,21 @@
       let eixo_y = d3.axisLeft()
           .scale(yScale);
       
-      let EixoY = d3.select('svg')
+      let EixoY = svg //d3.select('svg')
         .append('g')
-        .attr('transform', 'translate(40, 20)')
+        .attr('transform', 'translate(' + [margin.left, 0] + ')') // como o eixo foi construído com o yScale, que por sua vez já fora construíndo levando-se em consideração as margins top e bottom, só precisamos posicioná-lo horizontalmente.
         .call(eixo_y);
       
-      let EixoX = d3.select('svg')
+      // na verdade nem precisaria nomear as variáveis, EixoX e EixoY. só fazer o svg.append('g')...
+      
+      let EixoX = svg //d3.select('svg')
         .append('g')
-        .attr('transform', 'translate(40, 320)')
+        .attr('transform', 'translate(' + [0, height - margin.bottom] +')')  // como o eixo foi construído com xScale, que por sua vez foi construído usando-se, no range, as margens, o eixo já está na posição correta horizontalmente.
         .call(eixo_x);
+     // .attr('transform', 'translate(40, 320)')
 
+
+      
     });
   </script>
 </body>
