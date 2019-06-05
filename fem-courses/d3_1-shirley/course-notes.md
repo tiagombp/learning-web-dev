@@ -436,6 +436,7 @@ fizemos o seguinte:
 2. get the axes
 
 
+
 Dúvidas
 ======================================================
 
@@ -447,4 +448,5 @@ como selecionar parent, sibling etc., sem jquery?
 <rect> properties?
 como faz console log numa chamada do d3?
 o que é o "0" em "_groups"?
+no exercício 1, no código que processa o arquivo .tsv, o que é esse `++d[city]`? Ela usa isso para converter para um tipo numérico, mas como funciona exatamente?
 
