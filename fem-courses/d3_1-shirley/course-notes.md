@@ -435,7 +435,28 @@ fizemos o seguinte:
 console.log(yScale(50)); // o yScale(), como definimos, nada mais é que uma função, para a qual podem ser passados valores. Ele vai retornar a altura em pixels que corresponde a 50 graus, conforme o domínio e o range que foi definido.
 ```
 
-`.clamp
+Notar que quando fizemos:
+
+```js
+  let eixo_x = d3.axisBottom()
+      .scale(xScale);
+```
+Esse `eixo_x` é uma função. Para efetivamente criar o eixo no DOM, poderíamos fazer:
+
+`eixo_x(svg.append('g'))`
+
+Onde `svg` representa `d3.select('svg')`.
+
+No exemplo, em vez de fazer assim, fizemos:
+
+```js
+  let EixoX = svg //d3.select('svg')
+    .append('g')
+    .call(eixo_x);
+```
+
+
+
 
 ### Exercício!
 1. draw the bars using the right scales
