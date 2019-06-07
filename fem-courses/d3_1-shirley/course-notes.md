@@ -455,7 +455,12 @@ No exemplo, em vez de fazer assim, fizemos:
     .call(eixo_x);
 ```
 
-
+No `d3.axis` também podemos acrescentar `.ticks(qde_ticks)`, ou:
+`.tickFormat(d => d.getMonth())`
+ou
+`.tickFormat(d => d3.timeFormat('%b %Y')(d));`
+que dá no mesmo que:
+`.tickFormat(d3.timeFormat('%b %Y'))`
 
 
 ### Exercício!
@@ -463,6 +468,25 @@ No exemplo, em vez de fazer assim, fizemos:
 2. get the axes
 
 
+Shapes
+------------------------------------------------------
+
+SVG Elements: rect, circle, text, path etc.
+
+For <path>: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+
+### d3.shapes
+
+d3-shape calculates the path attribute so we don't have to
+https://github.com/d3/d3-shape
+
+Curves: different functions for different types of curves.
+
+d3.line() figures out the path attribute such that it just draws a line through all of these points.
+
+Cria uma função que vai converter os dados passados a ela num <path> que conecte todos os pontos dos dados, por meio de linhas e curvas.
+
+Output: path that connects each point (object) with lines or curves
 
 
 Dúvidas
