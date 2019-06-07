@@ -473,9 +473,11 @@ Shapes
 
 SVG Elements: rect, circle, text, path etc.
 
-For <path>: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+For `<path>`: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
 
 ### d3.shapes
+
+#### Line charts with `d3.line()`
 
 d3-shape calculates the path attribute so we don't have to
 https://github.com/d3/d3-shape
@@ -486,20 +488,61 @@ d3.line() figures out the path attribute such that it just draws a line through 
 
 Cria uma função que vai converter os dados passados a ela num <path> que conecte todos os pontos dos dados, por meio de linhas e curvas.
 
+`d3.line()`:
+Input: array of objects
 Output: path that connects each point (object) with lines or curves
 
+`dados` --> `d3.scale()` --> `d3.line()` --> `d3.select('svg').append('path').attr('d', (...) )`
+
+#### Pie charts with `d3.pie()`
+
+Tem uma função `pie()` que vai simplesmente pegar os dados e gerar um objeto com os ângulos iniciais e finais que correspondem aos valores dos dados que foram passados.
+
+```js
+var pie = d3.pie();
+
+// input
+var data = [1, 1, 2, 3, 5, 8, 13, 21];
+
+pie(data);
+
+// output
+[
+  {"data":  1, "value":  1, "startAngle": 6.050474740247008, "endAngle": 6.166830023713296, "padAngle": 0},
+  {"data":  1, "value":  1, "startAngle": 6.166830023713296, "endAngle": 6.283185307179584, "padAngle": 0},
+  {"data":  2, "value":  2, "startAngle": 5.817764173314431, "endAngle": 6.050474740247008, "padAngle": 0},
+  {"data":  3, "value":  3, "startAngle": 5.468698322915565, "endAngle": 5.817764173314431, "padAngle": 0},
+  {"data":  5, "value":  5, "startAngle": 4.886921905584122, "endAngle": 5.468698322915565, "padAngle": 0},
+  {"data":  8, "value":  8, "startAngle": 3.956079637853813, "endAngle": 4.886921905584122, "padAngle": 0},
+  {"data": 13, "value": 13, "startAngle": 2.443460952792061, "endAngle": 3.956079637853813, "padAngle": 0},
+  {"data": 21, "value": 21, "startAngle": 0.000000000000000, "endAngle": 2.443460952792061, "padAngle": 0}
+]
+```
 
 Dúvidas
 ======================================================
 
+o `.data()` parece ser uma forma simples de fazer um `.attr('data', valores)` em lote, iterado para cada elemento do dataset, e mesmo que não existam ainda os elementos que receberão esse atributo (criados com `.enter()` e `.append()`)
+
 `.call`? (d3.selection) ( aparentemente, `svg.append('g').call(eixo_y)` equivale a `eixo_y(svg.append('g'))` )
+
 como manipular um dataset no JS / D3?
+
+tb ainda não está claro quando o uso de uma função de algum módulo do d3 retorna um valor ou uma outra função.
+
 o que é um pouco confuso é pq, enquanto vc está aparentemente só definindo uma variável, ele já está aplicando as funções e produzindo um efeito no gráfico.
+
 diferença de fazer um d3.select e um document.querySelector / .getElementsByTagName?
+
 (como eram as seleções no JS mesmo?)
+
 como selecionar parent, sibling etc., sem jquery?
-<rect> properties?
+
+`<rect>` properties?
+
 como faz console log numa chamada do d3?
+
 o que é o "0" em "_groups"?
+
 no exercício 1, no código que processa o arquivo .tsv, o que é esse `++d[city]`? Ela usa isso para converter para um tipo numérico, mas como funciona exatamente?
 
