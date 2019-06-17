@@ -504,8 +504,8 @@ var data = [
 ];
 
 var line = d3.line()
-  .x(d => return xScale(d.date);)
-  .y(d => return yScale(d.value););
+  .x(d => xScale(d.date))
+  .y(d => yScale(d.value));
 
 d3.select('svg')
   .append('path')
@@ -514,6 +514,7 @@ d3.select('svg')
 1. Criam-se funções de escala com `d3.scale` (parâmetros: as escalas)
 2. Cria-se função de linha com `d3.line()`, a partir das funções de escala.
 3. Faz-se um append de um <path> no svg, cujo atributo `d` vai ser determinado pelo resultado da chamada da função de linha sobre os dados.
+Obs.: Não precisa de `enter()`, pq só precisamos de um único elemento path.
 
 `dados` --> 
 funções criadas com `d3.scale()` --> 
@@ -549,6 +550,39 @@ pie(data);
 
 *segunda parte*, pega-se o resultado da função criada com `d3.pie()` e passa-se para uma função criada com `d3.arc()`, gerando-se o código correspondente ao atributo `d` do <path>.
 
+```js
+  var colors = d3.scaleOrdinal(d3.schemeCategory10);
+  var data = [1, 1, 2, 3, 5, 8, 13, 21];
+  var pies = d3.pie()(data);
+
+  var arc = d3.arc()
+    .innerRadius(0)
+    .outerRadius(150)
+    .startAngle(d => d.startAngle)
+    .endAngle(d => d.endAngle);
+
+  var svg = d3.select('svg')
+  	.append('g')
+  	.attr('transform', 'translate(200,200)');
+  svg.selectAll('path')
+  	.data(pies).enter().append('path')
+  	.attr('d', function(d) {return arc(d)}) // legal colocar um console.log(d, arc(d)) aqui!
+  	.attr('fill', (d, i) => colors(d.value))
+  	.attr('stroke', '#fff');
+```
+
+(as cores estão dentro de `d3.scale`, já que cores são basicamente um tipo de escala de categoria).
+
+```js
+let colors = d3.scaleOrdinal()
+  .range(d3.schemeCategory10); // defino as cores de saída e não precisa passar um domain!
+```
+
+Muito do que d3 faz é converter dados em algo que <svg> ou <canvas> possa entender.
+
+dados --> <<d3 magic, por meio de uma série de funções>> --> atributos de elementos de <svg> 
+ 
+
 
 Dúvidas
 ======================================================
@@ -576,4 +610,14 @@ como faz console log numa chamada do d3?
 o que é o "0" em "_groups"?
 
 no exercício 1, no código que processa o arquivo .tsv, o que é esse `++d[city]`? Ela usa isso para converter para um tipo numérico, mas como funciona exatamente?
+
+```js
+      let EixoY = svg //d3.select('svg')
+        .append('g')
+        .attr('transform', 'translate(' + [margin.left, 0] + ')') // como o eixo foi construído com o yScale, que por sua vez já fora construíndo levando-se em consideração as margins top e bottom, só precisamos posicioná-lo horizontalmente.
+        .call(eixo_y);
+      
+      // na verdade nem precisaria nomear as variáveis, EixoX e EixoY. só fazer o svg.append('g')...
+```
+qual a melhor prática? só chamo a função, sem nomear a variável?
 
