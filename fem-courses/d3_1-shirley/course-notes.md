@@ -489,14 +489,42 @@ d3.line() figures out the path attribute such that it just draws a line through 
 Cria uma função que vai converter os dados passados a ela num <path> que conecte todos os pontos dos dados, por meio de linhas e curvas.
 
 `d3.line()`:
-Input: array of objects
-Output: path that connects each point (object) with lines or curves
+Input: array of objects (the objects being the data points do be plotted).
+Output: path that connects each point (object) with lines or curves. (`d3.curve*` oferece várias opções de suavização)
 
-`dados` --> `d3.scale()` --> `d3.line()` --> `d3.select('svg').append('path').attr('d', (...) )`
+```js
+var data = [
+  {date: new Date(2007, 3, 24), value: 93.24},
+  {date: new Date(2007, 3, 25), value: 95.35},
+  {date: new Date(2007, 3, 26), value: 98.84},
+  {date: new Date(2007, 3, 27), value: 99.92},
+  {date: new Date(2007, 3, 30), value: 99.80},
+  {date: new Date(2007, 4,  1), value: 99.47},
+  …
+];
+
+var line = d3.line()
+  .x(d => return xScale(d.date);)
+  .y(d => return yScale(d.value););
+
+d3.select('svg')
+  .append('path')
+  .attr('d', line(data));
+```
+1. Criam-se funções de escala com `d3.scale` (parâmetros: as escalas)
+2. Cria-se função de linha com `d3.line()`, a partir das funções de escala.
+3. Faz-se um append de um <path> no svg, cujo atributo `d` vai ser determinado pelo resultado da chamada da função de linha sobre os dados.
+
+`dados` --> 
+funções criadas com `d3.scale()` --> 
+função criada com `d3.line()` --> 
+`d3.select('svg').append('path').attr('d', (`função criada com `d3.line()` aplicada`) )`
 
 #### Pie charts with `d3.pie()`
 
-Tem uma função `pie()` que vai simplesmente pegar os dados e gerar um objeto com os ângulos iniciais e finais que correspondem aos valores dos dados que foram passados.
+Duas partes: 
+
+*primeira parte*, `d3.pie()`: que vai simplesmente pegar os dados e gerar um objeto com os ângulos iniciais e finais que correspondem aos valores dos dados que foram passados.
 
 ```js
 var pie = d3.pie();
@@ -518,6 +546,9 @@ pie(data);
   {"data": 21, "value": 21, "startAngle": 0.000000000000000, "endAngle": 2.443460952792061, "padAngle": 0}
 ]
 ```
+
+*segunda parte*, pega-se o resultado da função criada com `d3.pie()` e passa-se para uma função criada com `d3.arc()`, gerando-se o código correspondente ao atributo `d` do <path>.
+
 
 Dúvidas
 ======================================================
