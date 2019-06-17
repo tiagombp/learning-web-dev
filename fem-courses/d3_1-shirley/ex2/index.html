@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <style>
+    body { 
+        margin:0;
+        position:fixed;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0; 
+        }
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <svg></svg>
+  <script>
+    var city = 'New York';
+    var width = 800;
+    var height = 300;
+    var margin = {top: 20, bottom: 20, left: 30, right: 20}; // convenção
+    
+    // dataset of city temperatures across time
+    d3.tsv('data.tsv', (err, data) => {
+      // clean the data
+      data.forEach(d => {
+        d.date = d3.timeParse("%Y%m%d")(d.date);
+        d.date = new Date(d.date); // x
+        d.temp = ++d[city]; // y
+      });
+         
+      // scales
+
+      // (notar que isso tudo aqui está dentro do escopo de d3.tsv() ! )
+          
+      // // x
+      let xExtent = d3.extent(data, d => d['date']); // ou d.date
+      console.log(xExtent);
+
+      let xScale = d3.scaleTime()
+         .domain(xExtent)
+         .range([margin.left, width - margin.right]); // .range([0, width]);
+      
+      // // y
+      let yExtent = d3.extent(data, d => d[city]);
+      console.log(yExtent, yExtent[0], yExtent[1]);
+
+      let yScale = d3.scaleLinear()
+         .domain([0,yExtent[1]]) // para começar do zero 
+       //.domain(yExtent) // para o eixo y começar da temp mínima do período
+         .range([height - margin.bottom, margin.top]);
+      // lembrar que as coordenadas do svg começam de 0,0 no canto superior esquerdo.
+     
+      console.log(yScale(50)); // o yScale(), como definimos, nada mais é que uma função, para a qual podem ser passados valores. Ele vai retornar a altura em pixels que corresponde a 50 graus, conforme o domínio e o range que foi definido.
+        
+                  
+      // crio a função que vai converter os dados fornecidos pelas funções de escala em um atributo `d` de um elemento <path>.
+      
+      let gerador_linha = d3.line()
+        .x(d => xScale(d.date))
+        .y(d => yScale(d.temp));
+      
+      let svg = d3.select('svg');
+      
+      svg
+        .append('path')
+        .attr('d', gerador_linha(data))
+        .attr('stroke', "lightcoral")
+        .attr('fill', "white");
+         
+      // funções para gerar os eixos
+      
+      let eixo_x = d3.axisBottom()
+          //.ticks(5)
+          //.tickFormat(d => d3.timeFormat('%b %Y')(d))
+          //.tickFormat(d3.timeFormat('%b %Y'))
+          .scale(xScale);
+      
+      let eixo_y = d3.axisLeft()
+          .scale(yScale);
+      
+      // incorporando os eixos ao svg, a partir das funções geradoras
+      
+      let EixoY = svg //d3.select('svg')
+        .append('g')
+        .attr('transform', 'translate(' + [margin.left, 0] + ')') // como o eixo foi construído com o yScale, que por sua vez já fora construíndo levando-se em consideração as margins top e bottom, só precisamos posicioná-lo horizontalmente.
+        .call(eixo_y);
+      
+      // na verdade nem precisaria nomear as variáveis, EixoX e EixoY. só fazer o svg.append('g')...
+      
+      let EixoX = svg //d3.select('svg')
+        .append('g')
+        .attr('transform', 'translate(' + [0, height - margin.bottom] +')')  // como o eixo foi construído com xScale, que por sua vez foi construído usando-se, no range, as margens, o eixo já está na posição correta horizontalmente.
+        .call(eixo_x);
+      
+      // Essa estrutura poderia ser escrita assim:
+      // (fora o .attr(...))
+      // eixo_x(svg.append('g'))
+
+
+      
+    });
+  </script>
+</body>
