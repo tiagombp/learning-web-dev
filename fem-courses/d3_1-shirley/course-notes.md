@@ -514,7 +514,7 @@ d3.select('svg')
 1. Criam-se funções de escala com `d3.scale` (parâmetros: as escalas)
 2. Cria-se função de linha com `d3.line()`, a partir das funções de escala.
 3. Faz-se um append de um <path> no svg, cujo atributo `d` vai ser determinado pelo resultado da chamada da função de linha sobre os dados.
-Obs.: Não precisa de `enter()`, pq só precisamos de um único elemento path.
+Obs.: Não precisa de `enter()`, pq só precisamos de um único elemento path. Só se usa enter-append quando não se tem ao certo o número de elementos que serão necessários. E não precisa do `data()` porque os dados já estão sendo passados como argumento da função geradora da linha.
 
 `dados` --> 
 funções criadas com `d3.scale()` --> 
@@ -586,6 +586,17 @@ dados --> <<d3 magic, por meio de uma série de funções>> --> atributos de ele
 
 Dúvidas
 ======================================================
+
+Acho confuso isso:
+
+```js
+let line = d3.line() // uma função?
+  .x(d => xScale(d.date)) // outra função dentro daquela função? se .x fosse um método do objeto d3.line, 
+                          // seria mais fácil de entender. mas esses parênteses junto de "line"?
+  .y()
+```
+
+Um problema que vejo no entendimento inicial: muitas coisas são criadas como funções, mas os nomes das variáveis usadas são nomes de coisas, não de ações. Tipo "line", "xScale" etc.
 
 o `.data()` parece ser uma forma simples de fazer um `.attr('data', valores)` em lote, iterado para cada elemento do dataset, e mesmo que não existam ainda os elementos que receberão esse atributo (criados com `.enter()` e `.append()`)
 
