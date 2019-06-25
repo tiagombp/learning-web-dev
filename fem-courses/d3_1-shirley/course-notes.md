@@ -515,11 +515,25 @@ d3.select('svg')
 2. Cria-se função de linha com `d3.line()`, a partir das funções de escala.
 3. Faz-se um append de um <path> no svg, cujo atributo `d` vai ser determinado pelo resultado da chamada da função de linha sobre os dados.
 Obs.: Não precisa de `enter()`, pq só precisamos de um único elemento path. Só se usa enter-append quando não se tem ao certo o número de elementos que serão necessários. E não precisa do `data()` porque os dados já estão sendo passados como argumento da função geradora da linha.
+Obs.2: O path é fechado, e por padrão o fundo é preto. Por isso, usar um `.attr('fill', 'none');`. Às vezes o padrão é `stroke`: `none`.
 
+Para fazer a curva ficar err... curva, é só usar um `d3.curve...` na corrente do `d3.line()` (https://github.com/d3/d3-shape). Por exemplo, `d3.curveCatmullRom`, `d3.curveStep`...
+> "Just one extra line additional whereas if you look under the hood the path d attributes are vastly different to render the different curves."
+
+Para fazer um corte nos dados, lá dentro de `d3.tsv`:
+```js
+// em vez de data.forEach(d => {...})
+data = data.slice(0, 100); // para pegar só os primeiros 100 datapoints (101, na verdade)
+data.forEach(d => {...})
+
+```
+
+**Resumo**
 `dados` --> 
 funções criadas com `d3.scale()` --> 
 função criada com `d3.line()` --> 
 `d3.select('svg').append('path').attr('d', (`função criada com `d3.line()` aplicada`) )`
+
 
 #### Pie charts with `d3.pie()`
 
