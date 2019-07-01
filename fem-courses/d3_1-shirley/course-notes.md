@@ -597,9 +597,48 @@ Muito do que d3 faz é converter dados em algo que <svg> ou <canvas> possa enten
 dados --> <<d3 magic, por meio de uma série de funções>> --> atributos de elementos de <svg> 
  
 
+## Enter-Update-Exit
+
+https://bost.ocks.org/mike/constancy/
+
+```js
+  // bars includes update selection
+  var bars = svg.selectAll('rect')
+    .data(data, d => d);
+
+  // exit
+  bars.exit().remove();
+
+  // enter
+  var enter = bars.enter().append('rect')
+    .attr('width', rectWidth)
+    .attr('stroke', '#fff');
+
+  // enter + update
+  bars = enter.merge(bars)
+    .attr('x', (d, i) => i * rectWidth)
+    .attr('y', d => height - d)
+    .attr('height', d => d)
+    .attr('fill', d => colors(d));
+```
+
+`bars` is the selection. Then the `.data()` will evaluate three selections:
+* _update selection_, with the bound-elements that match the new data: `bars` (that is, what `.data`gives back)
+* _enter  selection_, with the data not currently bound to the current elements `bars.enter()`
+* _exit   selection_, with the bound-elements that don't match the new data. `bars.exit()`
+
+all this matching is done via the KEY FUNCTION, which establishes the unique identifiers for every data point accross the datasets of all states.
+
+In this example, the **exit selection** is being simply removed from the screen, with `.remove()`.
+
+For the **enter selection**, Shirley likes to chain the attributes that don't depend on the data.
+
+
 
 Dúvidas
 ======================================================
+
+o que o `.data()` retorna? Ela faz o bind, mas retorna algo. É um array de elementos com os respectivos dados amarrados?
 
 Acho confuso isso:
 
@@ -610,7 +649,7 @@ let line = d3.line() // uma função?
   .y()
 ```
 
-Um problema que vejo no entendimento inicial: muitas coisas são criadas como funções, mas os nomes das variáveis usadas são nomes de coisas, não de ações. Tipo "line", "xScale" etc.
+Um problema que vejo no entendimento inicial: muitas coisas são criadas como funções, mas os nomes das variáveis usadas são nomes de coisas, não de ações. Tipo "line", "xScale" etc. Nos meus códigos, acho que vou usar nomes de verbos.
 
 o `.data()` parece ser uma forma simples de fazer um `.attr('data', valores)` em lote, iterado para cada elemento do dataset, e mesmo que não existam ainda os elementos que receberão esse atributo (criados com `.enter()` e `.append()`)
 
@@ -645,4 +684,6 @@ no exercício 1, no código que processa o arquivo .tsv, o que é esse `++d[city
       // na verdade nem precisaria nomear as variáveis, EixoX e EixoY. só fazer o svg.append('g')...
 ```
 qual a melhor prática? só chamo a função, sem nomear a variável?
+
+
 
