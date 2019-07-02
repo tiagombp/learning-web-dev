@@ -693,6 +693,8 @@ Maybe the *exit* selection should come after the *enter* selection? Would people
 Dúvidas
 ======================================================
 
+como os dados chegam... a partir dessas funções de leitura de csv, tsv, json.
+
 o que o `.data()` retorna? Ela faz o bind, mas retorna algo. É um array de elementos com os respectivos dados amarrados?
 
 Acho confuso isso:
