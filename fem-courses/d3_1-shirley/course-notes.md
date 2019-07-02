@@ -633,6 +633,27 @@ In this example, the **exit selection** is being simply removed from the screen,
 
 For the **enter selection**, Shirley likes to chain the attributes that don't depend on the data.
 
+Normalmente não trabalhamos com a "enter" selection e com a "update" selection de forma separada, mas juntas, usando o `merge`.
+
+No código, `bars = enter.merge(bars)`
+
+`enter` é a _enter selection_ : 
+```js var enter = bars.enter().append('rect')
+    .attr('width', rectWidth)
+    .attr('stroke', '#fff');
+```
+e `bars` é a update selection, pois é o retorno de `.data()`:
+```js
+  var bars = svg.selectAll('rect')
+    .data(data, d => d);
+```
+`bars = enter.merge(bars)` está juntando as duas seleções e amarrando essa nova seleção a `bars`.
+
+Shirley:
+> Usually I want to set the things that don't depend on data change, and then I want to take everything that's still on the screen, the added plus remaining, and set attributes on that -- attributes that DO depend on the data.
+
+
+## Animating Transitions
 
 
 Dúvidas
@@ -685,5 +706,17 @@ no exercício 1, no código que processa o arquivo .tsv, o que é esse `++d[city
 ```
 qual a melhor prática? só chamo a função, sem nomear a variável?
 
+Dúvidas
+======================================================
 
+Para ler:
+https://github.com/d3/d3-selection
+https://github.com/d3/d3-scale
+https://github.com/d3/d3-axis
+https://github.com/d3/d3-shape
+https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+https://bost.ocks.org/mike/constancy/
 
+Feedback
+======================================================
+Os exemplos ficariam mais claros com uma tabelinha mostrando os dados, ou parte deles, apenas para lembrar que variáveis estão presentes etc.
