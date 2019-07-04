@@ -660,7 +660,7 @@ GreenSock
 
 ```js
 var t = d3.transition() // <- defines transition, syncs animation everywhere it's used
-  .duration(1000);
+  .duration(1000);      //    TEM QUE FICAR DENTRO DA FUNÇÃO QUE É CHAMADA! Se não, reseta.
 var svg = d3.select('svg');
    
 var bars = svg.selectAll('rect')
@@ -694,7 +694,6 @@ Dúvidas
 ======================================================
 
 d3.scaleBand.rangeRound() ?
-
 
 como os dados chegam... a partir dessas funções de leitura de csv, tsv, json.
 
