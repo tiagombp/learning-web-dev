@@ -6,15 +6,33 @@ d3.unconf
 metis?
 
 # to-do
-Read:  https://github.com/d3/d3/blob/master/API.md#selections-d3-selection
+Read:  
+
+https://github.com/d3/d3/blob/master/API.md#selections-d3-selection
+https://github.com/d3/d3-selection
+https://github.com/d3/d3-scale
+https://github.com/d3/d3-axis
+https://github.com/d3/d3-shape
+https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+https://bost.ocks.org/mike/constancy/
+
+Shirley's examples:
+http://sxywu.com/obamas/
+http://sxywu.com/80k/
+
 Learn: https://bl.ocks.org/-/about
 Use:   https://blockbuilder.org/
 Use:   https://blockbuilder.org/search
 
+http://sxywu.com/d3intro/
+
 
 https://github.com/d3/d3/blob/master/API.md
 
+
+
 # AGENDA
+
 D3 Ecosystem
 
 Selections
@@ -223,7 +241,7 @@ Como os valores que estão sendo atribuídos aos atributos vêm de funções, d�
     var height = 300;
     var data = [100, 250, 175, 200, 120, 230, 50];
     let threshold = 230;
-    
+
     var svg = d3.select('svg');
     let selecao = svg.selectAll('rect')
     	.data(data)
@@ -410,7 +428,7 @@ childNodes: NodeList(13)
  Isso seleciona todos os elementos svgs que são "text", e os loga no console.
 
 Mostra os dados que estão amarrados a esses elementos: `console.log(texto.data());`
-  
+
 Formata condicionalmente o texto dos labels:
 ```js
       let texto2 = eixo.selectAll('text')
@@ -595,7 +613,7 @@ let colors = d3.scaleOrdinal()
 Muito do que d3 faz é converter dados em algo que <svg> ou <canvas> possa entender.
 
 dados --> <<d3 magic, por meio de uma série de funções>> --> atributos de elementos de <svg> 
- 
+
 
 ## Enter-Update-Exit
 
@@ -744,19 +762,7 @@ no exercício 1, no código que processa o arquivo .tsv, o que é esse `++d[city
 ```
 qual a melhor prática? só chamo a função, sem nomear a variável?
 
-Para ler
-======================================================
 
-https://github.com/d3/d3-selection
-https://github.com/d3/d3-scale
-https://github.com/d3/d3-axis
-https://github.com/d3/d3-shape
-https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
-https://bost.ocks.org/mike/constancy/
-
-Shirley's examples:
-http://sxywu.com/obamas/
-http://sxywu.com/80k/
 
 Feedback
 ======================================================
