@@ -1,0 +1,141 @@
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<style type="text/css">
+  /*css to go here*/
+  svg {
+    width: 800px;
+    height: 400px;
+  }
+  circle {
+    opacity: 0.5;
+  }
+</style>
+
+<body></body>
+
+<script>
+  // properties
+  var radius = 5;
+  var duration = 1500;
+  var width = 800;
+  var height = 400;
+  var margin = {top: 20, bottom: 20, left: 30, right: 20};
+  var svg = d3.select('body').append('svg');
+  // scales
+  var xScale = d3.scaleBand()
+    .rangeRound([margin.left, width-margin.right]);
+  var yScale = d3.scaleLinear()
+    .range([height-margin.top, margin.bottom]);
+  // var colorScale = d3.scaleOrdinal(d3.schemeCategory10); // é uma array com 10 valores. preciso de mais do que isso...
+  let cores = ["#D5845E", "#D44C15", "#832F11", "#4E2010", "#832F11", "#F3987D", 
+"#EA522A", "#CA4017", "#5F1F10", "#CA4017", "#FECE60", "#F9AF17", 
+"#F8AC08", "#C68A0D", "#F8AC08", "#F7EC64", "#F7E822", "#CEC806", 
+"#9B961D", "#CEC806", "#CED950", "#B9CE00", "#96C11E", "#709A2D", 
+"#96C11E"];
+  var colorScale = d3.scaleOrdinal(cores);
+  
+  var t = d3.transition()
+    .duration(duration);
+  
+  function update(data, year) {
+    //preciso filtrar os dados
+    
+    console.log("extent", d3.extent(data, d => d.site));
+    
+    //let dominioSites = d3.extent(data, function(d) {console.log("dentro", d.site);
+    //                                                return d.site});
+    // mas extent vai dar os pontos finais e iniciais, não é isso que quero
+    
+    let dominioSites = d3.map(data, function(d){return(d.site)}).keys();
+    let dominioGen   = d3.map(data, d => d.gen).keys();
+    let dominioYield = d3.extent(data, d => d.yield);
+    
+    console.log("dominio x",   dominioSites, 
+                "dominio y",   dominioYield,
+                "dominio cor", dominioGen);
+    
+    xScale = xScale.domain(dominioSites); // atualizando o xSclae com o domain
+    yScale = yScale.domain(dominioYield); // atualizando o yScale com o domain
+    colorScale = colorScale.domain(dominioGen);
+    
+    console.log("dominio e x", dominioSites, d3.map(dominioSites, xScale()));
+        
+    console.log("aqui", data[1], xScale(data[1].site), xScale(dominioSites[3]),
+               "cor", colorScale(data[3].gen));
+    
+    dadosAno = data.filter(d => d.year == year); // filtro!!
+    
+    let bolhas = svg.selectAll('circle')
+      .data(dadosAno);
+    console.log("Dados", dadosAno);
+    
+    
+    //exit
+    bolhas.exit().transition(t)
+      .attr('r', 0)
+      .remove();
+    
+    // enter
+    let enter = bolhas.enter().append('circle')
+      .attr('r', radius)
+    
+    // enter+update
+    bolhas = enter.merge(bolhas)
+      .attr('cy', function(d) { //console.log(yScale(d.yield), d.yield);
+                                return yScale(d.yield);        
+                              })
+      .attr('cx', function(d) { //console.log(xScale(d.site), d.site); 
+                                return xScale(d.site);
+                              })
+      .attr('r', 0)
+      .transition(t)
+      .attr('ano', d => d.year)
+      .attr('fill', d => colorScale(d.gen))
+      .attr('r', radius);
+    
+    // axis
+    let eixo_x = d3.axisBottom()
+      .scale(xScale);
+    
+    let EixoX = svg //d3.select('svg')
+        .append('g')
+        .attr('transform', 'translate(' + [0, height - margin.bottom] +')')  // como o eixo foi construído com xScale, que por sua vez foi construído usando-se, no range, as margens, o eixo já está na posição correta horizontalmente.
+        .call(eixo_x);
+    
+    //console.log(data.yield);
+    //console.log("data.site", xScale(data.site));
+    //console.log(data[1].yield, yScale(data[1].yield));
+    //console.log(data[1].site, xScale(data[1].site));
+    console.log(bolhas);
+    console.log(enter);
+  }
+
+    let eixo_y = d3.axisLeft()
+      .scale(yScale);
+    
+    let EixoY = svg //d3.select('svg')
+        .append('g')
+        .attr('transform', 'translate(' + [margin.left, 0] +')')  // como o eixo foi construído com xScale, que por sua vez foi construído usando-se, no range, as margens, o eixo já está na posição correta horizontalmente.
+        .call(eixo_y);
+ 
+  d3.csv('barleyfull.csv', function(err, response) {
+    response.forEach(function(d) {
+      // convert yield and year from string to int
+      d.year = +d.year;
+      d.yield = +d.yield;
+      // use gen and site as the unique key for each datum
+      d.key = d.site + ':' + d.gen;
+    });
+    
+    //update(response, 1927);
+    //console.log(response[1].year);
+    
+    var startYear = 1927;
+    var numYears = 9;
+    var index = 0;
+     setInterval(() => {
+       update(response, startYear + (index % numYears));
+       index += 1;
+     }, 1000)
+  });
+</script>
