@@ -6,6 +6,7 @@ d3.unconf
 metis?
 
 # to-do
+
 Read:  
 
 https://github.com/d3/d3/blob/master/API.md#selections-d3-selection
@@ -15,6 +16,8 @@ https://github.com/d3/d3-axis
 https://github.com/d3/d3-shape
 https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
 https://bost.ocks.org/mike/constancy/
+
+http://learnjsdata.com/
 
 Shirley's examples:
 http://sxywu.com/obamas/
@@ -706,7 +709,83 @@ bars = enter.merge(bars)
 
 Maybe the *exit* selection should come after the *enter* selection? Would people understand it more easily?
 
+### Solução exercício
 
+0. Código inicial
+
+```js
+  // properties
+  var radius = 10;
+  var duration = 1500;
+  var width = 800;
+  var height = 600;
+  var svg = d3.select('body').append('svg');
+  // scales
+  var xScale = d3.scaleBand()
+    .rangeRound([0, width]);
+  var yScale = d3.scaleLinear()
+    .range([height, 0]);
+  var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+  
+  function update(data, year) {
+   
+  }
+  
+  d3.csv('barleyfull.csv', function(err, response) {
+    response.forEach(function(d) {
+      // convert yield and year from string to int
+      d.year = +d.year;
+      d.yield = +d.yield;
+      // use gen and site as the unique key for each datum
+      d.key = d.site + ':' + d.gen;
+    });
+    
+    console.log(response) // conseguimos ver response aqui. Pq?
+
+    console.log(response.map(d => d.site));
+    
+    var startYear = 1927;
+    var numYears = 9;
+    var index = 0;
+//     setInterval(() => {
+//       update(response, startYear + (index % numYears));
+//       index += 1;
+//     }, 1000)
+  });
+```
+
+Aparentemente, `response` vira uma variável / objeto que pode ser usado fora do bloco `d3.csv()`.
+
+1. Determinar domínios
+
+`x` -- Experimentos
+
+```js
+// x
+console.log(response.site); // gera undefined
+console.log(response.map(d => d.site)); // gera um array com todos os sites
+console.log(d3.map(response, d => d.site)); // gera algo q nem sei explicar o que é, mas
+                                            // é um objeto que parece possuir elementos cujas
+                                            // chaves são os valores únicos de "site"
+console.log(d3.map(response, d => d.site).keys()); // retorna só as chaves desse objeto, que são os
+                                                   // valores únicos de "site"
+```
+
+`x` -- de verdade
+
+Aparentemente, se você passar a array completa de `site` como domínio, `d3` vai usar (corretamente) apenas os valores únicos.
+
+```js
+let xDomain = response.map(d => d.site); // gera a array e atribui a xDomain
+
+xScale.domain(xDomain); // atualiza a função xScale com o domínio.
+                        // dúvida! por que não precisa fazer algo como:
+                        // xScale = xScale.domain(xDomain);
+
+console.log("Domínio de x", xScale.domain(), xScale.range()) // chamar .domain() e .range() 
+                                                             // retornam as arrays de dominio
+                                                             // e range
+```
 
 Dúvidas
 ======================================================
