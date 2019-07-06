@@ -838,6 +838,9 @@ Editando a função `update`
       .data(data, d => d.key) // aqui definimos a key function, usando a key que já tinha
                               // sido criada no processamento do CSV.
 
+    // 5. The exit selection
+    circles.exit().remove();
+
     // 3. The enter selection - here we create de circles, and set any attribute that does not
     //                          "depend" on the data
     enter = circles.enter().append('circle')
@@ -869,6 +872,16 @@ Editando a função `update`
   }
 ```
 
+A parte da `enter` e `enter+update` podem ficar juntas (shirley diz que só vale a pena separar quando vc estiver usando elementos encadeados (nested):
+
+```js
+    circles.enter().append('circle')    // enter
+      .attr('r', radius)
+      .merge(circles)                   // enter+update
+      .attr('cx', d => xScale(d.site))   
+      .attr('cy', d => yScale(d.yield))
+      .attr('fill', d => colorScale(d.gen));  
+```
 
 Dúvidas
 ======================================================
