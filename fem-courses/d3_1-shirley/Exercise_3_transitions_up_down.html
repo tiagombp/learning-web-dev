@@ -16,7 +16,7 @@
 <script>
   // properties
   var radius = 5;
-  var duration = 2000;
+  var duration = 1000;
   var width = 800;
   var height = 400;
   var margin = {top: 20, bottom: 20, left: 30, right: 20};
@@ -34,11 +34,10 @@
 "#96C11E"];
   var colorScale = d3.scaleOrdinal(cores);
   
-  var t = d3.transition()
-    .duration(duration);
-  
   function update(data, year) {
-    //preciso filtrar os dados
+    
+    let t = d3.transition() // tem q ficar aqui dentro da função, 
+      .duration(duration);  // senão é resetada toda vez.
     
     console.log("extent", d3.extent(data, d => d.site));
     
@@ -66,33 +65,32 @@
     dadosAno = data.filter(d => d.year == year); // filtro!!
     
     let bolhas = svg.selectAll('circle')
-      .data(dadosAno);
+      .data(dadosAno, d => d.key);
     console.log("Dados", dadosAno);
     
     
     //exit
-    bolhas.exit().transition(t)
+    bolhas.exit()
+      .transition(t)
       .attr('r', 0)
-      .attr('cy', height)
       .remove();
     
     // enter
     let enter = bolhas.enter().append('circle')
-      .attr('r', radius)
-    
-    // enter+update
-    bolhas = enter.merge(bolhas)
-      .attr('cy', height)
-      .attr('cx', function(d) { //console.log(xScale(d.site), d.site); 
-                                return(xScale(d.site));
-                              })
-      .attr('fill', d => colorScale(d.gen))
       .attr('r', 0)
-      .transition(t)
       .attr('cy', function(d) { //console.log(yScale(d.yield), d.yield);
                                 return yScale(d.yield);        
                               })
-      .attr('r', radius);
+    
+    // enter+update
+    bolhas = enter.merge(bolhas)
+      .attr('cx', function(d) { //console.log(xScale(d.site), d.site); 
+                                return xScale(d.site);
+                              })
+      .attr('fill', d => colorScale(d.gen))
+      .transition(t)
+      .attr('r', radius)
+      .attr('cy', d => yScale(d.yield));
     
     // axis
     let eixo_x = d3.axisBottom()
@@ -130,15 +128,15 @@
       d.key = d.site + ':' + d.gen;
     });
     
-    update(response, 1927);
+    //update(response, 1927);
     //console.log(response[1].year);
     
     var startYear = 1927;
     var numYears = 9;
     var index = 0;
-     setInterval(() => {
-       update(response, startYear + (index % numYears));
-       index += 1;
-     }, 1000)
+    setInterval(() => {
+      update(response, startYear + (index % numYears));
+     index += 1;
+    }, 1000)
   });
 </script>
