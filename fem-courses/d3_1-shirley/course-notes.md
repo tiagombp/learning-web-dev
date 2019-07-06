@@ -17,7 +17,9 @@ https://github.com/d3/d3-shape
 https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
 https://bost.ocks.org/mike/constancy/
 
+related (not exactly Shirley's recommendations):
 http://learnjsdata.com/
+https://gojs.net/latest/index.html
 
 Shirley's examples:
 http://sxywu.com/obamas/
@@ -709,6 +711,8 @@ bars = enter.merge(bars)
 
 Maybe the *exit* selection should come after the *enter* selection? Would people understand it more easily?
 
+!!! _you can't call `.enter()` on any selection, but only on what `.data()` returned!_
+
 ### Solução exercício
 
 0. Código inicial
@@ -754,11 +758,16 @@ Maybe the *exit* selection should come after the *enter* selection? Would people
   });
 ```
 
-Aparentemente, `response` vira uma variável / objeto que pode ser usado fora do bloco `d3.csv()`.
+Aparentemente, `response` vira uma variável / objeto que pode ser usado fora do bloco `d3.csv()`. 
+__ENTENDER ISSO__
 
 1. Determinar domínios
 
-`x` -- Experimentos
+1.0 `x` -- Experimentos
+
+A variável é categórica.
+
+(código a ser inserido logo depois do bloco `d3.csv()`)
 
 ```js
 // x
@@ -771,9 +780,9 @@ console.log(d3.map(response, d => d.site).keys()); // retorna só as chaves dess
                                                    // valores únicos de "site"
 ```
 
-`x` -- de verdade
+1.1 `x` -- de verdade
 
-Aparentemente, se você passar a array completa de `site` como domínio, `d3` vai usar (corretamente) apenas os valores únicos.
+Aparentemente, se você passar a array completa de `site` como domínio, `d3` vai usar (corretamente) apenas os valores únicos, então em tese não seria necessário se preocupar em obter a lista de valores únicos.
 
 ```js
 let xDomain = response.map(d => d.site); // gera a array e atribui a xDomain
@@ -787,8 +796,69 @@ console.log("Domínio de x", xScale.domain(), xScale.range()) // chamar .domain(
                                                              // e range
 ```
 
+1.2 `y` é numérico, então basta passar o extent.
+
+```js
+let yDomain = d3.extent(response, d => d.yield);
+
+yScale.domain(yDomain);
+```
+
+2. Desenhando os círculos
+
+(código na sequência do bloco `var startYear = 1927;`)
+
+```js
+update(response, startYear);
+```
+
+Editando a função `update`
+
+```js
+  function update(data, year) {
+
+    // 1. Filtrar os dados para o ano da vez
+    data = data.filter(d => d.year === year);
+
+    console.log(data);
+
+    // 2. Get all the circles (that doesn't yet exist) and bind data to it
+    circles = svg.selectAll('circle')
+      .data(data, d => d.key) // aqui definimos a key function, usando a key que já tinha
+                              // sido criada no processamento do CSV.
+
+    // 3. The enter selection - here we create de circles, and set any attribute that does not
+    //                          "depend" on the data
+    enter = circles.enter().append('circle')
+      .attr('r', radius); // é o único atributo que não depende dos dados, 
+                          // é uma constante.  
+
+                          // Note que, depois de essa linha ser executada,
+                          // já devo enxergar os <circle> no DOM.
+                          // IMPORTANTE
+                          // .enter() é chamada em cima de `circles`, pq
+                          // essa é a variável que está amarrada ao
+                          // que a chamada a .data() retornou.
+
+    // 4. The enter + update selection
+    circles = enter.merge(circles)
+      .attr('cx', d => xScale(d.site))   // se olharmos no html, já veremos os circles 
+                                         // com esse atributo definido!
+      .attr('cy', d => yScale(d.yield)); // depois de definirmos o cy, como já temos cx e r,
+                                         // a chamada à função já deve fazer aparecer 
+                                         // os círculos na tela!
+
+
+
+   
+  }
+```
+
+
 Dúvidas
 ======================================================
+
+Aparentemente, `response` vira uma variável / objeto que pode ser usado fora do bloco `d3.csv()`. 
 
 d3.scaleBand.rangeRound() ?
 
