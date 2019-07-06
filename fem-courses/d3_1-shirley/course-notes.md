@@ -14,6 +14,7 @@ https://github.com/d3/d3-selection
 https://github.com/d3/d3-scale
 https://github.com/d3/d3-axis
 https://github.com/d3/d3-shape
+https://github.com/d3/d3-transition
 https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
 https://bost.ocks.org/mike/constancy/
 
@@ -412,12 +413,14 @@ Para ver o objeto:
 ```
 Vai exibir isso no console:
 
+```js
 ut {_groups: Array(1), _parents: Array(1)}
 _groups: Array(1)
 0: Array(1)
 0: g
 childNodes: NodeList(13)
 // a lista de elementos que formam o eixo aqui.
+```
 
 Se fizer `console.log(eixo.nodes());`, retorna isso aqui no console (a mesma estrutura anterior, mas a partir do nível 4 de profundidade):
 
@@ -922,7 +925,9 @@ A parte da `enter` e `enter+update` podem ficar juntas (shirley diz que só vale
       .attr('cy', d => yScale(d.yield))      //    animando apenas posição y
 ```
 
-O que vem depois de `.transition()` é o que vai ser ANIMADO.
+O que vem depois de `.transition()` é o que vai ser ANIMADO!
+
+
 
 Dúvidas
 ======================================================
@@ -968,7 +973,7 @@ como selecionar parent, sibling etc., sem jquery?
 
 como faz console log numa chamada do d3?
 
-o que é o "0" em "_groups"?
+o que é o "0" em `_groups`?
 
 no exercício 1, no código que processa o arquivo .tsv, o que é esse `++d[city]`? Ela usa isso para converter para um tipo numérico, mas como funciona exatamente?
 
