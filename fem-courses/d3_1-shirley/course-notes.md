@@ -834,7 +834,7 @@ Editando a função `update`
     console.log(data);
 
     // 2. Get all the circles (that doesn't yet exist) and bind data to it
-    circles = svg.selectAll('circle')
+    let circles = svg.selectAll('circle')
       .data(data, d => d.key) // aqui definimos a key function, usando a key que já tinha
                               // sido criada no processamento do CSV.
 
@@ -882,6 +882,47 @@ A parte da `enter` e `enter+update` podem ficar juntas (shirley diz que só vale
       .attr('cy', d => yScale(d.yield))
       .attr('fill', d => colorScale(d.gen));  
 ```
+
+3. Transitions
+
+```js
+  function update(data, year) {
+
+    // 1. Filtrar os dados para o ano da vez
+    data = data.filter(d => d.year === year);
+
+    // 6. define a transição
+    let t = d3.transition().duration(1000);
+
+    console.log(data);
+
+    // 2. Get all the circles (that doesn't yet exist) and bind data to it
+    let circles = svg.selectAll('circle')
+      .data(data, d => d.key) // aqui definimos a key function, usando a key que já tinha
+                              // sido criada no processamento do CSV.
+
+    // 5. exit selection
+    circles.exit()
+      .transition(t) // 7. acrescenta a transição
+      .attr('r', 0)  //    com uma frescurinha de animar uma redução do raio até 0
+      .remove();
+
+    // 3. enter e 4. enter + update
+    circles.enter().append('circle')    // enter
+      .attr('r', radius)
+      .attr('cy', d => yScale(d.yield))     // 8. acrescenta esse valor inicial, caso contrário
+                                            //    o y, que está sendo animado entre uma chamada e
+                                            //    outra, começaria do zero (que é o default), 
+                                            //    o que daria um efeito
+                                            //    de os círculos caírem do alto da tela.
+      .merge(circles)                   // enter+update
+      .attr('cx', d => xScale(d.site))   
+      .attr('fill', d => colorScale(d.gen))
+      .transition(t)                         // 7. acrescenta a transição
+      .attr('cy', d => yScale(d.yield))      //    animando apenas posição y
+```
+
+O que vem depois de `.transition()` é o que vai ser ANIMADO.
 
 Dúvidas
 ======================================================
