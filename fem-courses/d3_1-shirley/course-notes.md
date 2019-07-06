@@ -709,11 +709,22 @@ bars = enter.merge(bars)
   .attr('height', d => d);    //    are transitioning
 ```
 
-Maybe the *exit* selection should come after the *enter* selection? Would people understand it more easily?
+> Maybe the *exit* selection should come after the *enter* selection? Would people understand it more easily?
+
+Na verdade, depende se na `enter+update` você redefiniu a variável que recebe o retorno de `.data` (aqui em cima, `bars`). Se sim, a `exit` tem que vir antes dessa redefinição! Caso só tenha usado um `enter.merge(bars)` na `enter+update`, aí `exit` pode vir depois. Mas em geral é melhor remover antes, pq vc pode precisar dessa redefinição.
 
 !!! _you can't call `.enter()` on any selection, but only on what `.data()` returned!_
 
 ### Solução exercício
+
+Atenção! No starter code dela, os atributos do css para `svg` estão sem os "px":
+
+```css
+  svg {
+    width: 800px;
+    height: 600px;
+  };
+```
 
 0. Código inicial
 
@@ -841,22 +852,28 @@ Editando a função `update`
                           // que a chamada a .data() retornou.
 
     // 4. The enter + update selection
-    circles = enter.merge(circles)
+    circles = enter.merge(circles) // aqui se está sobreescrevendo o que .data() havia retornado, lá
+                                   // no item 2, com a enter+update selection.
+                                   // nesse caso, a exit selection tem que vir antes dessa
+                                   // redefinição / overriding, caso contrário a .exit() function
+                                   // não vai funcionar sobre a seleção correta
+
       .attr('cx', d => xScale(d.site))   // se olharmos no html, já veremos os circles 
                                          // com esse atributo definido!
-      .attr('cy', d => yScale(d.yield)); // depois de definirmos o cy, como já temos cx e r,
+      .attr('cy', d => yScale(d.yield))  // depois de definirmos o cy, como já temos cx e r,
                                          // a chamada à função já deve fazer aparecer 
                                          // os círculos na tela!
-
-
-
-   
+      .attr('fill', d => colorScale(d.gen)); // aqui define o preenchimento a partir da
+                                             // escala de cor que ela criou (que só tem 10
+                                             // valores, mas tudo bem)   
   }
 ```
 
 
 Dúvidas
 ======================================================
+
+Entender direito o que cada função retorna. Pq às vezes não preciso refazer os bindings? Tipo, no exemplo 3, dos circles, posso só usar um `enter.merge(circles)` sem reatribuir isso a `circles`. Ou na parte em que posso simplesmente chamar `xScale.domain(...)` e redefinir o `xScale` sem fazer um `xScale = xSclae.domain(...)`.
 
 Aparentemente, `response` vira uma variável / objeto que pode ser usado fora do bloco `d3.csv()`. 
 
