@@ -17,10 +17,22 @@ https://github.com/d3/d3-shape
 https://github.com/d3/d3-transition
 https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
 https://bost.ocks.org/mike/constancy/
+http://github.com/d3/d3-force
+https://medium.com/@sxywu/understanding-the-force-ef1237017d5
 
-related (not exactly Shirley's recommendations):
+Watch:
+Abusing The Force Talk
+https://vallandingham.me/abusing_the_force.html
+https://www.youtube.com/watch?v=Mucmb33711A
+http://vallandingham.me/force_talk/#0
+
+related (not exactly Shirley's recommendations, coisas que achei pesquisando):
 http://learnjsdata.com/
 https://gojs.net/latest/index.html
+https://bl.ocks.org/maegul/7d8e7342c649fdc077a6984e52da4b62
+https://bl.ocks.org/mbostock/6526445e2b44303eebf21da3b6627320
+https://observablehq.com/@distantshape/charting-distribution-referral-changes-beeswarm-plot
+https://observablehq.com/@mbostock/pachinko-simulator
 
 Shirley's examples:
 http://sxywu.com/obamas/
@@ -926,6 +938,22 @@ A parte da `enter` e `enter+update` podem ficar juntas (shirley diz que só vale
 ```
 
 O que vem depois de `.transition()` é o que vai ser ANIMADO!
+
+## Force Layout
+
+https://medium.com/@sxywu/understanding-the-force-ef1237017d5 (v3)
+http://github.com/d3/d3-force
+
+Calculates X and Y positions of each of the nodes, with the optimal layout: as little overlap of links as possible.
+
+Attractive forces: pull nodes together (conserves space) (the hearts diagram)
+Repulsive forces:  push nodes apart (makes sure they don't overlap) (the broken hears diagram)
+
+Force layout repeats these calculations, figuring out x and y positions of the red node, given all the forces, attractive and repulsive, that the other nodes are applying on it, and then figures this out for every single node, getting all the x and y positions --> one tick. And then it runs thousands of iterations of "ticks" to converge to an optimal layout.
+
+In v4 you can provide sort of focal points. 
+
+Position. Collision.
 
 
 
