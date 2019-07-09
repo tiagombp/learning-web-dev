@@ -963,7 +963,7 @@ Force layout repeats these calculations, figuring out x and y positions of the r
 
 In v4 you can provide sort of focal points. 
 
-Position. Collision.
+Position (forceX, forceY). Collision (forceCollide).
 
 Performance issues. Alpha-min.
 
