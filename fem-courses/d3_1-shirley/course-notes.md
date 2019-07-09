@@ -4,6 +4,8 @@ http://slides.com/shirleywu/fm-d3intro#/
 @sxywu
 d3.unconf
 metis?
+http://sxywu.com/
+https://www.reddit.com/r/dataisbeautiful/comments/75q0qi/im_shirley_wu_freelance_data_visualization/
 
 # to-do
 
@@ -37,6 +39,10 @@ https://hi.stamen.com/an-ode-to-d3-js-projections-9d6477d6da0b
 https://medium.com/visualizing-the-field/there-be-dragons-dataviz-in-the-industry-652e712394a0
 https://www.youtube.com/watch?v=CkFktv0p3pw (Composing D3.js Visuals with Vue.js Workshop)
 https://medium.com/@zanarmstrong/why-choose-scrollytelling-steppers-155a59dd97fe
+https://www.youtube.com/watch?v=W5AdUcJDHo0&list=PLCC436JpVnK3KpieWtxYN6aC2-exR_IxH&index=8 (Animating the Virtual DOM - Sarah Drasner aka @sarah_edo at @ReactEurope 2017)
+https://vuejs.org/v2/guide/
+https://levelup.gitconnected.com/d3-js-and-vue-js-7a6a721eb79f
+https://valhead.com/2017/04/27/animation-in-dataviz-data-sketches/
 
 Shirley's examples:
 http://sxywu.com/obamas/
