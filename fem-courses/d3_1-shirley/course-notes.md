@@ -33,6 +33,10 @@ https://bl.ocks.org/maegul/7d8e7342c649fdc077a6984e52da4b62
 https://bl.ocks.org/mbostock/6526445e2b44303eebf21da3b6627320
 https://observablehq.com/@distantshape/charting-distribution-referral-changes-beeswarm-plot
 https://observablehq.com/@mbostock/pachinko-simulator
+https://hi.stamen.com/an-ode-to-d3-js-projections-9d6477d6da0b
+https://medium.com/visualizing-the-field/there-be-dragons-dataviz-in-the-industry-652e712394a0
+https://www.youtube.com/watch?v=CkFktv0p3pw (Composing D3.js Visuals with Vue.js Workshop)
+https://medium.com/@zanarmstrong/why-choose-scrollytelling-steppers-155a59dd97fe
 
 Shirley's examples:
 http://sxywu.com/obamas/
@@ -955,7 +959,83 @@ In v4 you can provide sort of focal points.
 
 Position. Collision.
 
+Performance issues. Alpha-min.
 
+## D3 + React
+
+http://slides.com/shirleywu/deck#/
+https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3
+
+D3
+interactive dataviz
+enter-update-exit pattern
+
+REACT
+single-page apps whose data change over time
+virtual DOM diffing
+
+THEY BOTH SOLVE THE SAME PROBLEM & WANT CONTROL OF THE DOM
+
+D3 VS. REACT
+component structure
+
+data calculation
+
+rendering
+
+### APPROACH #1 - USE CASE: APP WITH A SMALL DATASET AND SIMPLE VISUALIZATION
+
+React for structure
+D3 for data calculation
+React for rendering
+
+Pro: 
+* Clean, easy to reason about
+
+Con: 
+* lifecycle for every tick -> unperformant
+* Cannot use D3 functions that need access to DOM
+
+### APPROACH #2 - USE CASE: APP WITH A SMALL DATASET BUT HIGHLY INTERACTIVE VISUALIZATION
+
+* React for structure
+* D3 for data calculation
+* D3 AND React for rendering:
+​  - React for elements
+  - D3 for attributes
+https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3
+
+Pro: 
+Takes advantage of respective strengths
+
+Con: 
+React component around all the nodes ->  unperformant
+Makes people uncomfortable
+
+### APPROACH #3 - USE CASE: APP WITH A LARGE DATASET AND FREQUENTLY UPDATING VISUALIZATION
+
+* React for structure
+* D3 for data calculation
+* D3 for rendering
+
+Pro: 
+The viz scales!
+Use all the d3 functions!
+
+Con: 
+Why you even React, bro?      
+>Shirley: There's something that is amazingly beautiful about how react forces me to think about "componentizing" my visualizations, and so I love that and I also love using react for communication between each of the different components. So like if I have multiple visualizations that are linked together, so if this visualization affects what is displayed in this other visualization, react makes this communication super easy for me, whereas if I just used d3 I would have to use a bunch of dispatches to like do the communication. React makes that thought process super easy. And I also appreciate the fact that, like, my application isn't going to just have visualizations, right? I use react normally for all of those non-data viz parts of my app and use this approach for the visualization part.
+
+### LESSONS LEARNED
+* Never ever have React and D3 controlling same parts of the DOM (or else nasty bugs)
+* Know the rules to break them
+* Assess the needs of the project, then figure out the combination of D3 + React that makes sense
+
+
+
+LESSONS LEARNED
+Never ever have React and D3 controlling same parts of the DOM (or else nasty bugs)
+  
 
 Dúvidas
 ======================================================
