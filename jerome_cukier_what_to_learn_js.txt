@@ -1,0 +1,20 @@
+With that being said, here's what I think every javascript developer should know.
+
+0. variables, if tests, loops (duh)
+1. all the Array methods on the back of their hand, and mostly: forEach, map, 2. filter, sort, reduce.
+3. Functions and scope. Classes.
+4. Destructuring arrays and objects, including for function arguments
+5. asynchronous operations: promises, async/await syntax, fetch
+6. try / catch / throw
+7. That the javascript documentation is at MDN Web Docs. That the future features of JavaScript are at tc39/proposals
+8. using a web framework like React, AngularJS or Vue.
+9. Building an app with many files: import/export, the basic idea behind 10. transpiling (ie babeljs etc.) and building (ie webpack etc.)
+11. writing tests.
+
+Here’s what I think most people don’t need until they do.
+
+* this, bind/apply/call
+* iterators/generators
+* maps and sets
+* web workers
+* DOM API, canvas API, … all the browser APIs
