@@ -1,0 +1,6 @@
+lodash has _.inRange() function https://lodash.com/docs/4.17.4#inRange
+
+Example:
+
+_.inRange(3, 2, 4);
+// => true
