@@ -1,3 +1,5 @@
+
+
 ### Get an object keys
 
 ```js
@@ -44,5 +46,24 @@ const layer_step3 = $SVG.selectAll("rect")
                         })
 ```
 
+
+### Converting long "dataframe" as an array of objects to an object
+
+```js
+const dados_long = [
+  {"cat": "a", "valor":"1000"},
+  {"cat": "b", "valor": "500"}, 
+  {"cat": "c", "valor":"1200"},  
+  {"cat": "d", "valor": "200"}];
+
+const chaves = dados_long.map(d => Object.values(d)[0]);
+const vlores = dados_long.map(d => Object.values(d)[1]);
+
+let a = {};
+
+for (let i = 0; i < chaves.length; i++) {
+  a[chaves[i]] = vlores[i];
+}
+```
 
 
