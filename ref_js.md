@@ -66,4 +66,31 @@ for (let i = 0; i < chaves.length; i++) {
 }
 ```
 
+### Get the unique values of an array
+
+```js
+const dados = [
+  {tipo: "a",
+   x: 1,
+   y: 5},
+  {tipo: "b",
+   x: 1,
+   y: 10},
+  {tipo: "a",
+   x: 2,
+   y: 25},
+  {tipo: "b",
+   x: 2,
+   y: 15},
+  {tipo: "a",
+   x: 3,
+   y: 16},
+  {tipo: "b",
+   x: 3,
+   y: 33},
+];
+
+const tipos = d3.map(dados, d => d.tipo).keys();
+```
+
 
