@@ -93,4 +93,17 @@ const dados = [
 const tipos = d3.map(dados, d => d.tipo).keys();
 ```
 
+### Using forEach to create an object:
+
+```js
+let a = [1,2,3,4];
+
+let c = {};
+
+a.forEach(function(d) {
+  return(c[d] = {"x": "x de "+d, 
+                 "y": "y de "+d})
+})
+```
+
 
