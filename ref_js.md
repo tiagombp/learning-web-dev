@@ -107,3 +107,10 @@ a.forEach(function(d) {
 ```
 
 
+
+
+## Dúvidas
+
+`selection.node().getBoundingClientRect().width`
+x
+`selection.node().offsetWidth`
