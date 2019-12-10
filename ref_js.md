@@ -114,3 +114,6 @@ a.forEach(function(d) {
 `selection.node().getBoundingClientRect().width`
 x
 `selection.node().offsetWidth`
+
+`selection.node()`
+`selection.html()`
