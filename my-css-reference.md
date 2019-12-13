@@ -26,7 +26,6 @@ https://stackoverflow.com/questions/20167074/how-to-center-a-single-character-bo
 
 
 ```css
-
 .center1 {
     width: 2rem;
     height: 2rem;
@@ -42,6 +41,19 @@ https://stackoverflow.com/questions/20167074/how-to-center-a-single-character-bo
    justify-content: center;
    align-items: center;
 }
-
-
 ```
+
+### Centralizar verticalmente um texto dentro de um <p>
+
+Usar um mesmo `line-height` que o `height` do elemento.
+
+```css
+p {
+    height: 30px;
+    line-height: 30px;
+}
+```
+
+Ou, usando d3, se quero centralizar um texto de rótulo em relação a uma barra, por exemplo. Se o texto passa de uma linha...
+https://codepen.io/tiagombp/pen/oNgLKRw
+

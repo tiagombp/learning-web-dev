@@ -10,6 +10,7 @@ const object1 = {
 };
 
 console.log(Object.keys(object1));
+console.log(d3.keys(object1));
 // expected output: Array ["a", "b", "c"]
 ```
 
@@ -91,6 +92,13 @@ const dados = [
 ];
 
 const tipos = d3.map(dados, d => d.tipo).keys();
+// ou
+const tipos = dados.map(d => d.tipo).filter((v, i, a) => a.indexOf(v) === i));
+// o v é o valor atual do elemento, i é o index do elemento e a é o objeto que representa a própria array.
+// assim, para cada elemento, ele aplica o método .indexOf(v) sobre a array, procurando a posição em que o 
+// elemento atual (v) esta nessa array (a) -- a propria array. e aí ele verifica se a posição encontrada
+// corresponde ao próprio index do elemento (o que significaria a primeira ocorrência do elemento). Se não
+// for, significa que o elemento é repetido, e vai ser filtrado.
 ```
 
 ### Using forEach to create an object:
@@ -105,6 +113,11 @@ a.forEach(function(d) {
                  "y": "y de "+d})
 })
 ```
+
+### Centralizar rótulos
+
+Ou, usando d3, se quero centralizar um texto de rótulo em relação a uma barra, por exemplo. Se o texto passa de uma linha...
+https://codepen.io/tiagombp/pen/oNgLKRw
 
 
 
