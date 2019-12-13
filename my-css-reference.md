@@ -45,3 +45,27 @@ https://stackoverflow.com/questions/20167074/how-to-center-a-single-character-bo
 
 
 ```
+
+### Interesting selectors
+https://dev.to/ibrahima92/6-powerful-css-selectors-that-will-really-help-you-write-clean-css-4bab
+
+1. div > a
+This selector will enable us to select all a element where the parent element is a div tag.
+
+2. div + a
+This one will select every a tags placed immediately after a div element. If we have an element between the div and the a tag, that element won't be selected.
+
+3. div ~ a
+This one will select every a tag preceded by a div element on the same level. In other words, if the a tag is not immediately preceded by a div element, but has a div tag as a sibling element, that element will be selected.
+
+4. [attribute^=value]
+e.g: [class^="list-"]
+This selector will pick every element that contains a class attribute and its value begins with list-
+
+5. [attribute$=value]
+e.g: [src$=".png"]
+This one will select every src attribute where its value ends with .png.
+
+6. [attribute*=value]
+e.g: [class*="-list"]
+This selector will pick every element whose class attribute contains -list. It does not matter if -list is at the beginning, the middle or at the end of the class's value. The most important is that the value must contain -list.
