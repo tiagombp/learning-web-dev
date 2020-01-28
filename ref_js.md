@@ -1,4 +1,18 @@
+## Some concepts
 
+When you define a function, you can define a parameter, which acts as a local variable inside the function. Each parameter is assigned the argument value that you pass in that position of the call (https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/get-started/ch2.md).
+
+That is, when building a function, you define _parameters_. When calling the function, you pass in _arguments_ (which will be assigned to the parameters).
+
+```js
+function greeting(this_is_a_parameter) {
+    console.log(`Hello, ${ this_is_a_parameter }!`);
+}
+
+greeting(this_is_an_argument);
+```
+
+## How to do some stuff
 
 ### Get an object keys
 
