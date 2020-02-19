@@ -135,6 +135,10 @@ https://codepen.io/tiagombp/pen/oNgLKRw
 
 
 
+https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+
+If you need the bounding rectangle relative to the top-left corner of the document, just add the current scrolling position to the `top` and `left` properties (these can be obtained using `window.scrollX` and `window.scrollY`) to get a bounding rectangle which is independent from the current scrolling position.
+
 
 ## Dúvidas
 
