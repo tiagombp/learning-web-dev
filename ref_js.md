@@ -1,3 +1,14 @@
+## Articles
+
+Data attributes
+https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+
+Intersection Observer API
+https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+
+Custom propertiers
+https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+
 ## Some concepts
 
 When you define a function, you can define a parameter, which acts as a local variable inside the function. Each parameter is assigned the argument value that you pass in that position of the call (https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/get-started/ch2.md).
@@ -126,6 +137,16 @@ a.forEach(function(d) {
   return(c[d] = {"x": "x de "+d, 
                  "y": "y de "+d})
 })
+```
+
+### transformar uma array de objetos com rotulo/valor em um objeto com "rotulo: valor" 
+
+```js
+  const dados_flat = {};
+  for (el of dados) {
+    dados_flat[el.rotulo] = el.valor;
+  }
+  console.log(dados_flat);
 ```
 
 ### Centralizar rótulos
