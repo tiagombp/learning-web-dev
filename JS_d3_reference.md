@@ -223,6 +223,10 @@ Events: `mouseover`, `mouseout`, `click`, `change`, `mouseenter`, `mouseleave`, 
 
 When use it ("inline events"), instead of adding an event listener?
 
+## force layout
+
+A simulação vai gerar valores de "x" e "y" para os nodes que foram passados para ela. Para manter a constância do objeto, é importante iniciar esses valores x e y dos nodes com as posições onde estarão as bolhas quando a simulação for iniciada (nesse caso, a posição das bolhas no dot plot).
+
 ## outros
 
 ### obtendo vs definindo valores
@@ -271,3 +275,4 @@ promises, Promisse All
 New Date(d.date)
 como d3.hierarchy espera o dado?
 mouseover x mouseenter?
+d3 stack melhor

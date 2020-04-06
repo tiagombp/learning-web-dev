@@ -270,8 +270,25 @@ let employees = [ {name:"Ali", salary: 50000},
 
 d3.sum(employees, d => d.salary) // 220000
 employees.reduce( (acumulado, valor_da_vez) => acumulado + valor_da_vez.salary, 0)
-
 ```
+
+Reduce para somar os quadrados de um array:
+
+```js
+let a = [10, 20, 30, 40];
+let total = a.reduce((ac, atual) => ac + atual*atual, initialValue = 0);
+// se não colocar o initialValue = 0, reduce vai assumir que o primeiro
+// elemento da array é o acumulador inicial, e o segundo elemento (i = /// 1) é o valor atual.
+// passando initialValue = 0, forço o acumulador a começar em zero, e o 
+// primeiro currentValue a ser o elemento de i = 0, 
+// o primeiro elemento mesmo da array.
+
+// isso equivale a
+let a = [10, 20, 30, 40];
+let total = 0;
+for (d of a) {x = x + d*d};
+```
+
 
 #### Fazendo um gather
 
