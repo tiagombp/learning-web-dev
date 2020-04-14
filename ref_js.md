@@ -147,6 +147,17 @@ a.forEach(function(d) {
 })
 ```
 
+### se o nome da chave for uma variável
+
+```js
+let coluna = "Personagem";
+let valor  = "Gandalf";
+let objeto = {[coluna] : valor};
+
+// {Personagem: "Gandalf"}
+
+```
+
 ### transformar uma array de objetos com rotulo/valor em um objeto com "rotulo: valor" 
 
 ```js
