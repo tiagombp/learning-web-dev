@@ -283,6 +283,9 @@ d3.sum(employees, d => d.salary) // 220000
 employees.reduce( (acumulado, valor_da_vez) => acumulado + valor_da_vez.salary, 0)
 ```
 
+Esse `0` no final é o valor inicial do `reduce`. Ainda é possível passar a própria array como argumento.
+
+
 Reduce para somar os quadrados de um array:
 
 ```js
@@ -299,6 +302,20 @@ let a = [10, 20, 30, 40];
 let total = 0;
 for (d of a) {x = x + d*d};
 ```
+
+No R, o `purrr` tem uma função accumulate que é como um reduce só que gerando os valores intermediários como vetor.
+
+Uma versão desse accumulate em JS seria:
+
+```js
+[2,3,4,5,6].reduce((ac,cv) => ac * cv)
+// 720
+
+[2,3,4,5,6].map((d,i,a) => a.slice(0,i+1).reduce((ac,cv) => ac * cv))
+// [2, 6, 24, 120, 720]
+// o "a" é a própria array
+```
+
 
 
 #### Fazendo um gather
@@ -459,6 +476,9 @@ tenho uma escala rápida sem me preocupar com range ou domain.
 
 `d3.scaleBand().padding(value)`
 
+A `.bandwidth()` é calculada simplesmente fazendo:
+( `.range()[1]` - `.range()[0]` ) / `.domain().length`
+
 ### scaleTime
 
 ## line generator
@@ -482,3 +502,16 @@ promises, Promisse All
 New Date(d.date)
 como d3.hierarchy espera o dado?
 mouseover x mouseenter?
+qual a natureza de scale?
+pq não funciona...
+```js
+
+let scale = d3.scaleLinear();
+
+function config() {
+  scale.range([1,10]);
+}
+
+config()
+
+scale.domain()
