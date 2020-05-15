@@ -515,3 +515,17 @@ function config() {
 config()
 
 scale.domain()
+
+# lições
+
+padrão / pattern enter+update+exit
+
+let objetos = d3.select(svg).selectAll(objeto).data(dados)
+
+objetos.exit().attr(faz alguma coisa com quem sai).remove() // <- se for o caso
+
+let objetos_enter = objetos.enter().attr(todas as coisas que não vão mudar quando os dados mudarem)
+
+objetos = objetos.merge(objetos_enter)
+
+objetos.attr(todas as coisas que mudam quando os "dados" mudam)
