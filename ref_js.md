@@ -495,8 +495,26 @@ d3.treemap()
   .paddingInner()
 ```
 
+## outros
+
+salvar array
+`localStorage.setItem('dados', JSON.stringify(dados.map(d => ({"data": d.data, "mutuario": d.mutuario, "valor": +d.valor}))));`
+
+It's simple. Just go to the developer tools by pressing F12 , then go to the Application tab. In the Storage section expand Local Storage. After that, you'll see all your browser's local storage there.
+
+## para capturar width, height do svg
+
+```js
+let w = svg.style("width");
+let h = svg.style("height");
+
+[w, h] = [w, h].map(d => +d.slice(0, d.length-2));
+```
+
+
 # dúvidas
 
+quando se createElement, ele fica flutuando no ether até dar um append em algum lugar?
 como funciona direito d3.csv
 promises, Promisse All
 New Date(d.date)
@@ -529,3 +547,4 @@ let objetos_enter = objetos.enter().attr(todas as coisas que não vão mudar qua
 objetos = objetos.merge(objetos_enter)
 
 objetos.attr(todas as coisas que mudam quando os "dados" mudam)
+
