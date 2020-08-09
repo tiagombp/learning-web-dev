@@ -25,6 +25,115 @@ greeting(this_is_an_argument);
 
 ## How to do some stuff
 
+### join arrays
+
+```js
+let a = [1,3,4,5,6,7]
+
+let b = ["a", "f", "z"]
+
+let c = [...a, ...b]
+c
+//(9) [1, 3, 4, 5, 6, 7, "a", "f", "z"]
+```
+
+### join objects
+
+```js
+let a = {"a": 1, "b": 2}
+
+let b = {"names" : ["jon", "robb", "bran"],
+"house" : "stark"}
+
+let c = {...a, ...b}
+c
+/*
+{a: 1, b: 2, names: Array(3), house: "stark"}
+
+a: 1
+b: 2
+house: "stark"
+names: (3) ["jon", "robb", "bran"]
+*/
+```
+
+Atenção ao seguinte:
+
+```js
+let d = {"obj1" : a, "obj2" : b}
+d
+//{obj1: {…}, obj2: {…}}
+//obj1: {a: 1, b: 2}
+//obj2: {names: Array(3), house: "stark"}
+
+
+a["a"] = 3
+d
+//{obj1: {…}, obj2: {…}}
+//obj1: {a: 3, b: 2}  
+// obj2: {names: Array(3), house: "stark"}
+```
+
+Ele alterou o novo objeto! porque o novo objeto continha apenas referências ao objeto a.
+
+Agora:
+
+```js
+let e = {}
+
+e["obj1"] = {...a}
+e["obj2"] = {...b}
+e
+
+//{obj1: {…}, obj2: {…}}
+//obj1: {a: 3, b: 2}
+//obj2: {names: Array(3), house: "stark"}
+
+a["a"] = 23
+e
+//{obj1: {…}, obj2: {…}}
+//obj1: {a: 3, b: 2}
+//obj2: {names: Array(3), house: "stark"}
+```
+
+
+### Copy an object / array
+
+Objects are references types, so you cannot create a copy using `=`. Reference types don't hold values, they are a pointer to the value in memory. (Samantha Ming)
+
+
+```js
+let a = {"a": 1, "b": 2}
+
+let b = Object.assign({}, a)
+b
+// {a: 1, b: 2}
+
+// or
+
+let c = {}
+Object.assign(c, a)
+c
+//{a: 1, b: 2}
+
+let d = {...a}
+d
+//{a: 1, b: 2}
+
+```
+
+A shallow copy means the first level is copied, deeper levels are referenced.
+
+
+### Pad a string
+
+```js
+"hi".padStart(10, "h")
+//"hhhhhhhhhi"
+"hi".padEnd(10, "!")
+//"hi!!!!!!!!"
+```
+
 ### Get an object keys
 
 ```js
