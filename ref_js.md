@@ -315,6 +315,12 @@ Caso se use `{` e `}`, tem que usar `return`:
 }
 ```
 
+Vantagem de usar `function name_of_function(parameters)`:
+
+>Function declarations are not part of the regular top-to-bottom flow of control. They are conceptually moved to the top of their scope and can be used by all the code in that scope. This is sometimes useful because it offers the freedom to order code in a way that seems meaningful, without worrying about having to define all functions before they are used. (Eloquent Javascript)
+
+
+
 ### Control Structures
 
 ```javascript
