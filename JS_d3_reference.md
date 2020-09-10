@@ -108,6 +108,15 @@ data.map(d => {
 
 ```
 
+#### Filtrando uma array a partir de uma outra array
+
+```js
+var arr = [1,2,3,4],
+    brr = [2,4],
+    res = arr.filter(f => !brr.includes(f));
+console.log(res);
+```
+
 
 ### Manipulating the DOM
 
@@ -234,6 +243,15 @@ A simulação vai gerar valores de "x" e "y" para os nodes que foram passados pa
 ![](JS_d3_reference_03.PNG)
 
 
+
+### pegando o dado amarrado a um determinado elemento svg
+
+```js
+        barras
+           .attr("fill", function(d) {
+             console.log(d3.select(this).datum())
+           })
+```
 
 
 ## scales
