@@ -162,3 +162,7 @@ console.log(countChar("kakkerlak", "k"));
 // → 4
 ```
 
+
+## Chapter 4
+
+### 1. 
