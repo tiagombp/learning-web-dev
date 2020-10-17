@@ -4,6 +4,17 @@
 * curso Brian Holt
 * livro CSS in 44 minutes
 
+# Descobertas
+
+Unidade `ch`?
+
+`ch` ou `rem`?
+
+# Random, classificar
+
+
+
+
 # Coisas legais
 
 /--------------------------------------\
@@ -15,6 +26,43 @@
 |                                      |
 |                                      |
 \--------------------------------------/
+
+### Full-bleed
+
+Solução bem interessante.
+
+https://joshwcomeau.com/css/full-bleed/
+
+HTML
+```html
+<main class="wrapper">
+  <h1>Some Heading</h1>
+  <p>Some content and stuff</p>
+  <img class="full-bleed" alt="cute meerkat" src="/meerkat.jpg" />
+</main>
+```
+
+CSS
+```css
+.wrapper {
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(65ch, 100%)
+    1fr;
+}
+.wrapper > * {
+  grid-column: 2;
+}
+.full-bleed {
+  width: 100%;
+  grid-column: 1 / 4;
+}
+``` 
+
+> The fr unit is a flexible unit that fills available space. It's similar in principle to flex-grow; it's a ratio of how much of the free space the column should consume.
+
+> ch is a unit, like px or rem. It corresponds to the width of the 0 character in the current font, for the specified font size. Instead of reverse-engineering a pixel width, we're specifying a width in characters.
 
 ### Make a div perfectly rounded and center a single character within it
 
