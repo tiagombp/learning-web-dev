@@ -29,9 +29,30 @@ Unidade `ch`?
 
 ### Full-bleed
 
-Solução bem interessante.
+1. https://css-tricks.com/full-bleed/
 
-https://joshwcomeau.com/css/full-bleed/
+Que vem daqui, na verdade: https://css-tricks.com/full-width-containers-limited-width-parents/
+
+```css
+.full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+```
+
+https://codepen.io/chriscoyier/pen/xOjaYA
+
+> That works as long as the column is centered and you don’t mind having to hide overflow-x on the column (or the body) as this can trigger horizontal overflow otherwise.
+
+
+
+2. https://joshwcomeau.com/css/full-bleed/
+
+Solução bem interessante.
 
 HTML
 ```html
@@ -67,6 +88,27 @@ CSS
 ### Make a div perfectly rounded and center a single character within it
 
 In order to achieve a perfectly round shape you'll need to have perfect square to begin with. So, for instance, your button will need to have dimensions like width: 32px; height: 32px . To turn a square into a circle you'll have to apply a border radius of 50% e.g. border-radius: 50% 
+
+### Centraliza 
+
+Uma maneira interessante também é usar
+
+```css
+
+.center {
+    position: alguma_coisa;
+    left: 50%; /*ou*/
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+```
+O que acontece aqui é que isso faz com que o box fique (1) alinhado à metade do container (o 50% da margem é em relação ao container), e (2) volte metade da sua própria largura para a esquerda (porque o -50% do translate é em relação à própria dimensão!).
+
+Amelia explica super bem aqui:
+
+
+
+
 
 ### Centraliza texto dentro de um elemento
 
@@ -105,4 +147,17 @@ p {
 
 Ou, usando d3, se quero centralizar um texto de rótulo em relação a uma barra, por exemplo. Se o texto passa de uma linha...
 https://codepen.io/tiagombp/pen/oNgLKRw
+
+
+## "Regras"
+
+### Single direction margin declarations
+
+https://csswizardry.com/2012/06/single-direction-margin-declarations/
+
+## other CSS Tricks articles
+
+https://css-tricks.com/when-do-you-use-inline-block/
+https://css-tricks.com/what-you-should-know-about-collapsing-margins/
+
 
