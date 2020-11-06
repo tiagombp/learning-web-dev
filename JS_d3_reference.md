@@ -153,6 +153,11 @@ na verdade, tentar explicar de onde vêm esses argumentos "fantasma" que são us
 
 quando você usa `this`, você esta usando o `node`, e aí você só pode usar as funções nativas do JS. se você encapsula o `this` numa **selection**, `d3.select(this)` aí você tem à disposição todos os métodos de D3.
 
+## Browser
+
+`document.documentElement` returns the `Element` that is the root element of the document (for example, the `<html>` element for HTML documents).
+
+
 # D3
 
 ## "glue"
