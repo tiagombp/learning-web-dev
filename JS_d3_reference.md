@@ -261,6 +261,30 @@ A simulação vai gerar valores de "x" e "y" para os nodes que foram passados pa
 
 ## scales
 
+### Scale Linear, valores fora dos limites do domínio
+
+Para fazer com que valores fora dos limites do domínio retornem os extremos do range visual, é possível usar um `.clamp(true)`.
+
+```js
+let a = d3.scaleLinear().domain([-1e9,1e9]).range([10,100])
+
+a(-1e9)
+// returns 10
+
+a(-1e10)
+// returns -395
+
+a(1e10)
+// returns 505
+
+a.clamp(true)
+a(-1e10)
+// returns 10
+a(1e10)
+// returns 100
+```
+
+
 ### quick color scales
 
 Se faço
