@@ -176,6 +176,11 @@ na verdade, tentar explicar de onde vêm esses argumentos "fantasma" que são us
 
 quando você usa `this`, você esta usando o `node`, e aí você só pode usar as funções nativas do JS. se você encapsula o `this` numa **selection**, `d3.select(this)` aí você tem à disposição todos os métodos de D3.
 
+Quando se usa um `document.querySelectorAll(seletor)`, o que se retorna é um nodelist, sobre o qual é possível usar os métodos de Arrays (forEach, map, reduce, filter etc.)
+
+Mas se pego um elemento com `document.querySelector(seletor)`, e peço seus filhos com `el.children`, o que ele retorna é um HTMLCollection, sobre o qual não dá para usar os methods de arrays. Mas aí vc pode usar um `Array.from(el.children)`, e ele vai gerar uma array.
+
+
 ## Browser
 
 `document.documentElement` returns the `Element` that is the root element of the document (for example, the `<html>` element for HTML documents).
