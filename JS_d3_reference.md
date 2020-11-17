@@ -1,3 +1,8 @@
+# JS x D3
+
+`document.querySelector(ref)` equivale a
+`d3.select(ref).node()`
+
 # Javascript
 
 ### Functions
@@ -117,6 +122,24 @@ var arr = [1,2,3,4],
 console.log(res);
 ```
 
+#### Concatenar
+
+```js
+let arr1 = [0, 1, 2];
+let arr2 = [3, 4, 5]; 
+
+//  Append all items from arr2 onto arr1
+arr1 = arr1.concat(arr2);
+
+// // com spread
+
+let arr1a = [0, 1, 2];
+let arr2a = [3, 4, 5];
+
+arr1a = [...arr1a, ...arr2a]; 
+//  arr1 is now [0, 1, 2, 3, 4, 5]
+// Note: Not to use const otherwise, it will give TypeError (invalid assignment)
+```
 
 ### Manipulating the DOM
 
@@ -318,6 +341,21 @@ d3.treemap()
 # dúvidas
 
 como funciona direito d3.csv
+
+```js
+d3.csv(url).then(draw(data)) não funciona
+```
+
+Não funciona.
+
+Mas
+
+```js
+d3.csv(url).then(function(data) {
+    draw(data)
+})
+```
+
 promises, Promisse All
 New Date(d.date)
 como d3.hierarchy espera o dado?
