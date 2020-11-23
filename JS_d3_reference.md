@@ -180,6 +180,9 @@ Quando se usa um `document.querySelectorAll(seletor)`, o que se retorna é um no
 
 Mas se pego um elemento com `document.querySelector(seletor)`, e peço seus filhos com `el.children`, o que ele retorna é um HTMLCollection, sobre o qual não dá para usar os methods de arrays. Mas aí vc pode usar um `Array.from(el.children)`, e ele vai gerar uma array.
 
+Outra coisa, quando quero saber que tipo de elemento é:
+Note that the `Element.tagName` property could have been used instead, since `nodeName` has the same value as `tagName` for an element. Bear in mind, however, that `nodeName` will return `"#text"` for text nodes while `tagName` will return `undefined`.
+
 
 ## Browser
 
