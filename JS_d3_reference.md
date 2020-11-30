@@ -183,6 +183,43 @@ Mas se pego um elemento com `document.querySelector(seletor)`, e peço seus filh
 Outra coisa, quando quero saber que tipo de elemento é:
 Note that the `Element.tagName` property could have been used instead, since `nodeName` has the same value as `tagName` for an element. Bear in mind, however, that `nodeName` will return `"#text"` for text nodes while `tagName` will return `undefined`.
 
+E note que é possível testar se um elemento seria selecionado por um determinado seletor usando:
+
+```js
+var result = element.matches(selectorString);
+```
+
+The matches() method checks to see if the Element would be selected by the provided selectorString -- in other words -- checks if the element "is" the selector.
+
+
+#### Setting and getting styles
+
+```javascript
+window.getComputedStyle(a).marginTop
+// ou
+window.getComputedStyle(a).getPropertyValue("margin-top")
+// funcionam com todas as propriedades
+
+
+a.style.getPropertyValue("max-width") 
+//(Funciona para propriedades inline!)
+
+
+window.getComputedStyle(a).getPropertyValue("height")
+//x
+a.getBoundingClientRect().height
+```
+
+A explicação do MDN:
+
+The Window.getComputedStyle() method returns an object containing the values of all CSS properties of an element, after applying active stylesheets and resolving any basic computation those values may contain. Individual CSS property values are accessed through APIs provided by the object, or by indexing with CSS property names.
+
+The returned object is the same CSSStyleDeclaration type as the object returned from the element's style property. However, the two objects have different purposes:
+
+	•	The object from getComputedStyle is read-only, and should be used to inspect the element's style — including those set by a <style> element or an external stylesheet.
+	•	The element.style object should be used to set styles on that element, or inspect styles directly added to it from JavaScript manipulation or the global style attribute.
+
+
 
 ## Browser
 
