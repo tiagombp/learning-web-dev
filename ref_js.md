@@ -529,6 +529,17 @@ Outra coisa:
 
 Um detalhe para a pequena e sutil diferença entre o que é apresentado no console para `d3.selectAll("p").nodes()` e `document.querySelectorAll("p")`:
 
+## iterando sobre uma selecao
+
+```js
+selecao.each(function(d,i,nodes) {
+  // d é o datum associado ao node
+  // i é o index
+  // nodes é o grupo atual
+  // this é o node atual, o mesmo que nodes[i]
+})
+
+```
 
 ### tamanho da seleção
 
@@ -624,6 +635,8 @@ let w = svg.style("width");
 let h = svg.style("height");
 
 [w, h] = [w, h].map(d => +d.slice(0, d.length-2));
+// não precisa do length
+[w, h] = [w, h].map(d => +d.slice(0, -2));
 ```
 
 
@@ -662,4 +675,8 @@ let objetos_enter = objetos.enter().attr(todas as coisas que não vão mudar qua
 objetos = objetos.merge(objetos_enter)
 
 objetos.attr(todas as coisas que mudam quando os "dados" mudam)
+
+qual a diferença de especificar a função de raio no forceCollide() ou no forceCollide().radius()?
+.force('colisao', d3.forceCollide().radius(d => vis.draw.scales.r(+d.PLOA)))
+.force('colisao', d3.forceCollide(d => vis.draw.scales.r(+d.PLOA))).radius()
 
