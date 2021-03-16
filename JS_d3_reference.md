@@ -141,6 +141,21 @@ arr1a = [...arr1a, ...arr2a];
 // Note: Not to use const otherwise, it will give TypeError (invalid assignment)
 ```
 
+#### Remover elementos
+
+Splice
+
+```js
+let a = [10,11,12,13,14,15]
+undefined
+a.splice(2,3)
+// (3) [12, 13, 14]
+a
+//(3) [10, 11, 15]
+```
+
+`array.splice(pos_inicial, quantos)`
+Ele remove `quantos` elementos a partir do index `pos_inicial` (inclusive).
 ### Manipulating the DOM
 
 ```javascript
