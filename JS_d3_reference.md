@@ -223,6 +223,7 @@ a.style.getPropertyValue("max-width")
 window.getComputedStyle(a).getPropertyValue("height")
 //x
 a.getBoundingClientRect().height
+a.offsetHeight
 ```
 
 A explicação do MDN:
@@ -234,6 +235,7 @@ The returned object is the same CSSStyleDeclaration type as the object returne
 	•	The object from getComputedStyle is read-only, and should be used to inspect the element's style — including those set by a <style> element or an external stylesheet.
 	•	The element.style object should be used to set styles on that element, or inspect styles directly added to it from JavaScript manipulation or the global style attribute.
 
+Aqui é importante se ligar que `getBoundingClientRect().height` ou `offsetHeight` calculam a altura sem as margens... então quando for preciso calcular as alturas dos elementos no JS, é melhor usar padding no style.
 
 
 ## Browser
