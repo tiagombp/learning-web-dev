@@ -292,10 +292,23 @@ el.classList.remove('hide');
   opacity: 0;
 }
 ```
+#### Experimentar
+
+(https://jvns.ca/blog/2020/06/19/a-little-bit-of-plain-javascript-can-do-a-lot/)
+scroll through the page with .scrollIntoView
+The last fun thing I learned about is .scrollIntoView – I wanted to scroll down to the next question automatically when someone clicked “next question”. Turns out this is just one line of code:
+
+```js
+row.classList.add('revealed');
+row.scrollIntoView({behavior: 'smooth', block: 'center'});
+```
+
 
 ## Browser
 
 `document.documentElement` returns the `Element` that is the root element of the document (for example, the `<html>` element for HTML documents).
+
+
 
 
 # D3
