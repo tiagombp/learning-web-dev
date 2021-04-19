@@ -1,0 +1,52 @@
+html {
+    overflow-y: hidden;
+  }
+  
+  .container {
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+     overflow-y: hidden;
+    height: 100vh;
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .slide {
+    min-width: 100vw;
+    height: 98vh;
+    outline: 1px solid lavender;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: end;
+    background-color: khaki;
+    position: relative;
+  }
+  
+  p {
+    
+    font-size: 20rem;
+  
+  }
+  
+  .slide:first-child {
+    background-color: lavender;
+
+  }
+  
+  a {
+   
+    position: absolute;
+    right: 10px;
+    
+    
+  }
+
+  p#slide2 {
+      position: absolute;
+      bottom: 0;
+      font-size: 1px;
+  }
