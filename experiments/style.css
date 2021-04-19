@@ -1,5 +1,6 @@
 html {
-    overflow-y: hidden;
+    overflow: hidden;
+
   }
   
   .container {
@@ -8,10 +9,10 @@ html {
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: scroll;
-     overflow-y: hidden;
-    height: 100vh;
+    overflow-y: hidden;
+    height: 98vh;
     justify-content: flex-start;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: y mandatory;
   }
   
   .slide {
@@ -21,7 +22,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    scroll-snap-align: end;
+    scroll-snap-align: start;
     background-color: khaki;
     position: relative;
   }
@@ -45,8 +46,3 @@ html {
     
   }
 
-  p#slide2 {
-      position: absolute;
-      bottom: 0;
-      font-size: 1px;
-  }

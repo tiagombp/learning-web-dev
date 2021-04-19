@@ -13,26 +13,14 @@
   
         <div class="slide" id="slide1">
             <p>1</p>
-            <a href="#slide2" class="next">Próximo</a>
+            <a href="#slide2">Próximo</a>
         </div>
         
-        <div class="slide">
+        <div class="slide" id="slide2">
             <p>2</p>
             <a href="#slide1">Voltar</a>
-            <p id="slide2">.</p>
         </div>
     </div>
-        
-    <script>
-        const next = document.querySelector("a.next");
-
-        next.addEventListener("click", function(e) {
-
-            window.scrollTo(20,0);
-            console.log("scrola, bixiga")
-
-        })
-    </script>
     
 </body>
 </html>
