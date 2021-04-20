@@ -148,6 +148,11 @@ p {
 Ou, usando d3, se quero centralizar um texto de rótulo em relação a uma barra, por exemplo. Se o texto passa de uma linha...
 https://codepen.io/tiagombp/pen/oNgLKRw
 
+### centralizar um elemento `inline` ou `inline-block`
+
+The vertical-align CSS property sets vertical alignment of an inline, inline-block or table-cell box.
+
+
 ### pseudo-elements `::before` e `::after`
 
 https://codersblock.com/blog/diving-into-the-before-and-after-pseudo-elements/
