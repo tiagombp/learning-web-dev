@@ -238,6 +238,15 @@ The returned object is the same CSSStyleDeclaration type as the object returne
 
 Aqui é importante se ligar que `getBoundingClientRect().height` ou `offsetHeight` calculam a altura sem as margens... então quando for preciso calcular as alturas dos elementos no JS, é melhor usar padding no style.
 
+#### Pegando o tamanho da fonte base
+
+```js
+
+const root = document.documentElement;
+const base_font_size = +window.getComputedStyle(root, null).getPropertyValue('font-size').slice(0,-2);
+
+```
+
 #### Mexendo com classes
 
 Tirando e acrescentando classes
