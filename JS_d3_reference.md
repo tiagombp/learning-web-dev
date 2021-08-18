@@ -410,6 +410,23 @@ A simulação vai gerar valores de "x" e "y" para os nodes que foram passados pa
 ![](JS_d3_reference_03.PNG)
 
 
+### each 
+
+Quando se usar each com uma seleção, o primeiro parâmetro se refere ao dado que está amarrado a cada elemento. Assim:
+
+```js
+
+selecao.each(function(d,i) {
+    // "d" é o dado amarrado ao elemento atual
+    // d3.select(this) vai selecionar o elemento atual -- seleção d3
+    // d3.select(this).datum() vai ser o próprio "d".
+})
+
+```
+
+being passed the current datum (d), the current index (i), and the current group (nodes), with this as the current DOM element (nodes[i]). 
+https://github.com/d3/d3-selection#selection_each
+
 
 ### pegando o dado amarrado a um determinado elemento svg
 
