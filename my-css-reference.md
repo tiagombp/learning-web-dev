@@ -27,6 +27,10 @@ Unidade `ch`?
 |                                      |
 \--------------------------------------/
 
+### Grid gotchas
+
+Supondo um conjunto de grids posicionados num container com `display: grid`, se vc usar `justify-content` no container, os divs aparentemente terão que ter um `width` declarado explicitamente, caso contrário ficarão com `width` zero.
+
 ### Full-bleed
 
 1. https://css-tricks.com/full-bleed/
