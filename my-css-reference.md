@@ -12,7 +12,11 @@ Unidade `ch`?
 
 # Random, classificar
 
+## Melhor maneira de achar o elemento que está causando overflow horizontal
 
+```css
+* { outline: 1px solid #0086ff77;}
+```
 
 
 # Coisas legais
