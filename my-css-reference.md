@@ -3,6 +3,7 @@
 * curso Jen
 * curso Brian Holt
 * livro CSS in 44 minutes
+* livro CSS in Depth
 
 # Descobertas
 
@@ -17,6 +18,10 @@ Unidade `ch`?
 ```css
 * { outline: 1px solid #0086ff77;}
 ```
+
+## Atenção com position: sticky
+
+Às vezes, um overflow horizontal pode estar causando um comportamento estranho no position: sticky!
 
 
 # Coisas legais
