@@ -151,3 +151,7 @@ gsap.to(data, {
     } 
 )
 ```
+
+## ScrollTrigger
+
+No ScrollTrigger, as funções `onUpdate`, `onEnter` etc. aceitam um parâmetro, que a própria instância do scrolltrigger. Lá, tem uma propriedade `trigger`, que pode ser usada para pegar o elemento que provocou o disparo / trigger! Isso pode ser bem útil para montar um scroller... vamos ver.
