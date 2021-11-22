@@ -437,6 +437,10 @@ https://github.com/d3/d3-selection#selection_each
            })
 ```
 
+### bbox do elemento svg
+
+SVGGraphicsElement.getBBox()
+https://developer.mozilla.org/en-US/docs/Web/API/SVGGraphicsElement/getBBox
 
 ## scales
 
