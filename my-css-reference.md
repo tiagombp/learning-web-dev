@@ -1,3 +1,9 @@
+# Problemas aleatórios que descobri na prática
+
+Para definir o raio de um `circle` no CSS, `r : 10` só funciona no Chrome. No Firefox e no Safari é preciso adicionar a unidade, tipo `r: 5px`.
+
+Fontes "fantasia" quando usadas como heading podem ficar avacalhadas no Firefox e Safari. Comos os elementos `<h1>`, `<h2>` etc. possuem um estilo implícito de `font-weight: bold`, quando a fonte só tem um peso, esses browsers adicionam uma espécie de stroke ao redor das letras, para criar um efeito de negrito. Fica horrível. Então para essas fontes é importante usar um `h1 { font-weight: normal; }`.
+
 # Cursos / aulas que já fiz:
 
 * curso Jen
