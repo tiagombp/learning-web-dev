@@ -153,7 +153,7 @@ https://stackoverflow.com/questions/20167074/how-to-center-a-single-character-bo
 }
 ```
 
-### Centralizar verticalmente um texto dentro de um <p>
+### Centralizar verticalmente um texto dentro de um `<p>`
 
 Usar um mesmo `line-height` que o `height` do elemento.
 
@@ -170,6 +170,30 @@ https://codepen.io/tiagombp/pen/oNgLKRw
 ### centralizar um elemento `inline` ou `inline-block`
 
 The vertical-align CSS property sets vertical alignment of an inline, inline-block or table-cell box.
+
+### centralizar com grid e place-conten: center;
+  
+```css
+.smol-centering {
+  display: grid;
+  place-content: center;
+}
+```
+
+### pseudo-class :target
+  
+https://smolcss.dev/#smol-aspect-ratio-gallery
+  
+```css
+[id]:target:before {
+    color: var(--color-on-blue);
+    content: "Aww, you came to see me!";
+    font-size: .9rem;
+    font-style: italic;
+    position: absolute;
+    top: -1.5rem;
+}
+```
 
 
 ### pseudo-elements `::before` e `::after`
