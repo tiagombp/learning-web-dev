@@ -246,7 +246,29 @@ const root = document.documentElement;
 const base_font_size = +window.getComputedStyle(root, null).getPropertyValue('font-size').slice(0,-2);
 
 ```
+### Formatar números com Intl
 
+```js
+const number = 123455.3455;
+
+console.log(new Intl.NumberFormat('pt-BR',{maximumFractionDigits: 2}).format(number));
+```
+
+```js
+const number = 123456.789;
+
+console.log(Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(number));
+
+// R$ 123.456,79
+```
+
+```js
+const number = 123456;
+
+console.log(Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigitas: 2}).format(number));
+
+// 123.456,00
+```
 #### Mexendo com classes
 
 Tirando e acrescentando classes
