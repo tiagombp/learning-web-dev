@@ -3,3 +3,25 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    overflow: hidden;
+    background-color: black;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#btn-stop {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    z-index: 1;
+    padding: .5em 1em;
+}
